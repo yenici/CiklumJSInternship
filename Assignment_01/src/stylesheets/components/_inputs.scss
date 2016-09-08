@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the INPUT component.
+// -----------------------------------------------------------------------------
+$inputs-color-text: #555;
+
+input {
+  font-family: $font-inputs;
+}
+
+input[type="text"],
+input[type="email"] {
+  border-radius: 4px;
+  color: $inputs-color-text;
+  padding: 4px;
+}

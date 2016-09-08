@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the BooksShelf React component.
+// -----------------------------------------------------------------------------
+.BooksShelf {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: space-around;
+}

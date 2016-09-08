@@ -1,0 +1,117 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the BooksItem React component.
+// -----------------------------------------------------------------------------
+// Defines the heigth of the book's card (the height of a cover image is 140px)
+$books-item-card-height: 190px;
+// Defines the width of the book's card (the width of a cover image is 184px)
+$books-item-card-width: 280px;
+$books-item-color-cover-outline: #fff;
+$books-item-color-cover-hover: rgba(247, 223, 30, 0.9);
+$books-item-color-title: #efa121;
+$books-item-color-author: #cfb798;
+
+.BooksItem {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 1em 0.5em;
+  height: $books-item-card-height;
+  // Uncomment this line and comment min-* and max-* lines to get four items in a row on a desktop
+  //width: $books-item-card-width;
+  min-width: $books-item-card-width;
+  max-width: $books-item-card-width + 100px;
+
+  &__cover {
+    flex-shrink: 0;
+    background: {
+      position: center;
+      repeat: no-repeat;
+      size: cover;
+    }
+    display: block;
+    height: 184px;
+    outline: 3px solid $books-item-color-cover-outline;
+    position: relative;
+    width: 140px;
+
+    &:before {
+      background-color: $books-item-color-cover-hover;
+      color: black;
+      content: "READ";
+      font: {
+        family: $font-condensed;
+        size: 1em;
+      }
+      height: 100%;
+      left: 0;
+      line-height: 184px;
+      opacity: 0;
+      position: absolute;
+      text: {
+        align: center;
+        shadow: 0 0 10px white;
+      }
+      top: 0;
+      transition: opacity .2s linear;
+      width: 100%;
+    }
+
+    &:hover {
+      outline: 3px solid $books-item-color-cover-outline;
+
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow: hidden;
+    padding: 0 0 0 1em;
+  }
+
+  &__title {
+    color: $books-item-color-title;
+    display: block;
+    flex-shrink: 0;
+    font: {
+      family: $font-condensed;
+      size: 1em;
+      weight: 400;
+    }
+    //line-height: 18px;
+    overflow: hidden;
+    text: {
+      overflow: ellipsis;
+      transform: uppercase;
+      decoration: none;
+    }
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__author {
+    color: $books-item-color-author;
+    display: block;
+    flex-shrink: 0;
+    font:{
+      family: $font-inputs;
+      size: 0.8em;
+    }
+  }
+  &__level {
+    flex-shrink: 0;
+    font-size: 0.6em;
+    margin: 0;
+  }
+  &__info {
+    flex-shrink: 1;
+    font-size: 0.75em;
+    line-height: 1.5em;
+    margin: 1em 0 0;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,98 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+$header-color-bg: #eedb59;
+$header-color-text: #2f2e2d;
+$header-color-link: #9e8c09;
+$header-color-info: rgba(255, 255, 255, 0.9);
+
+$header-shadow-text: 1px 0 1px rgba(255, 255, 255, 0.6);
+$header-shadow-info: 0 1px 0 rgba(0, 0, 0, 0.4);
+
+header {
+  align-items: center;
+  background-color: $header-color-bg;
+  display: flex;
+  flex-flow: row nowrap;
+  height: $header-height-fixed;
+  justify-content: space-between;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  // Using z-index to prervent overlapping by the books' cover
+  z-index: 1000;
+}
+
+.GithubRibbon {
+  //min-width: 134px;
+}
+
+.HeaderLogo {
+  margin: 0;
+  min-width: 165px;
+  padding: 0;
+  text-align: center;
+
+  &__image {
+    height: auto;
+    width: 50%;
+  }
+
+  &__slogan {
+    color: $header-color-text;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+    text-shadow: $header-shadow-text;
+  }
+
+  &__link {
+    color: $header-color-link;
+    font-size: 0.75em;
+    text: {
+      decoration: none;
+      shadow: $header-shadow-text;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.HeaderLinks {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 0.5em;
+
+  & > a {
+    display: inline-block;
+  }
+
+  &__twitter {
+  }
+
+  &__info {
+    color: $header-color-info;
+    font: {
+      family: Arial;
+      size: 1.7em;
+      weight: bold;
+    }
+    padding: 0.5em;
+    text: {
+      decoration: none;
+      shadow: $header-shadow-info;
+    }
+    transition: color .3s linear;
+
+    &:hover {
+      color: $header-color-text;
+    }
+  }
+}
