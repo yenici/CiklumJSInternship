@@ -1,4 +1,4 @@
-Implement
+Implement _.cloneDeep, _.extend methods from Lodash.
 
 ```deepExtend
 compareDeep
@@ -20,4 +20,5 @@ var obj2 = {
 };
 
 deepExtend(obj1, obj2)
-compareExtend(obj1, obj2)  // true/false```
+compareExtend(obj1, obj2)  // true/false
+```
