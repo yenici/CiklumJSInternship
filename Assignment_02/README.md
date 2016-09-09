@@ -1,6 +1,6 @@
 Implement
 
-`deepExtend
+```deepExtend
 compareDeep
 
 var obj1 = {
@@ -20,4 +20,4 @@ var obj2 = {
 };
 
 deepExtend(obj1, obj2)
-compareExtend(obj1, obj2)  // true/false`
+compareExtend(obj1, obj2)  // true/false```
