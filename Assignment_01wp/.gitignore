@@ -1,0 +1,6 @@
+.idea/
+node_modules/
+dist/
+src/tmp/
+src/images/Thumbs.db
+src/images/sprites/Thumbs.db
