@@ -6,7 +6,16 @@ import deepCompare from '../deepCompare';
 
 /* global test, expect: true */
 
-test('deepClone: Empty object', () => {
+test('deepClone: Non object argument', () => {
+  expect(deepClone(false)).toBe(null);
+});
+
+test('deepClone: Array argument', () => {
+  const obj = [1, 2, 3];
+  expect(deepClone(obj)).toBe(null);
+});
+
+test('deepClone: Empty object argument', () => {
   const obj = {};
   expect(deepCompare(obj, deepClone(obj))).toBe(true);
 });
@@ -32,11 +41,6 @@ test('deepClone: Simple object', () => {
   };
   const obj2 = deepClone(obj1);
   expect(deepCompare(obj1, obj2)).toBe(true);
-});
-
-test('Array', () => {
-  const obj = [1, 2, 3];
-  expect(() => { deepCompare(obj, deepClone(obj)); }).toThrowError(/Cannot extend Array/);
 });
 
 // test('', () => {
