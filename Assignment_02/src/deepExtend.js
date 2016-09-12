@@ -1,4 +1,4 @@
-/**
+  /**
  * Created by yenici on 9/9/2016.
  */
 function deepExtend(target, ...sources) {
@@ -8,10 +8,13 @@ function deepExtend(target, ...sources) {
   if (target === null) {
     throw Object.create({ message: 'Cannot extend null', name: 'TypeError' });
   }
+  if (target instanceof Array) {
+    throw Object.create({ message: 'Cannot extend Array', name: 'TypeError' });
+  }
   return sources.reduce((object, extender) => {
     /* eslint no-param-reassign: ["error", { "props": false }] */
     // Do not process null or undefined objects
-    if (extender != null && target !== extender) {
+    if (extender != null && extender !== target && !(target instanceof Array)) {
       const extenderProps = Object.getOwnPropertyNames(extender);
       extenderProps.forEach(prop => {
         const value = extender[prop];

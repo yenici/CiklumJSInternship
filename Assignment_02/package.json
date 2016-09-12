@@ -1,6 +1,6 @@
 {
   "name": "deep-object",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Deep working with objects",
   "main": "index.js",
   "scripts": {

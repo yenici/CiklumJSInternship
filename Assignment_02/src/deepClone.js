@@ -9,9 +9,9 @@ function deepClone(object) {
   if (typeof object !== 'object') {
     return null;
   }
-  // TODO: What if object instanceof Array
   return deepExtend(Object.create(Object.getPrototypeOf(object)), object);
 }
 
 // module.exports = deepClone;
 export default deepClone;
+it

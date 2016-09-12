@@ -31,9 +31,12 @@ test('deepClone: Simple object', () => {
     },
   };
   const obj2 = deepClone(obj1);
-  console.log(obj1);
-  console.log(obj2);
   expect(deepCompare(obj1, obj2)).toBe(true);
+});
+
+test('Array', () => {
+  const obj = [1, 2, 3];
+  expect(() => { deepCompare(obj, deepClone(obj)); }).toThrowError(/Cannot extend Array/);
 });
 
 // test('', () => {
