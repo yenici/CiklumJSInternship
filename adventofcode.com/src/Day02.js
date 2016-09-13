@@ -38,9 +38,8 @@
  *
  */
 
-/* global require, modules: true */
+/* global require, module: true */
 
-// const readline = require('readline');
 const fs = require('fs');
 
 const calculateArea = function calculateArea(dimensionsString) {
