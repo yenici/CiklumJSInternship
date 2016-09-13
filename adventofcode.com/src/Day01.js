@@ -1,6 +1,4 @@
 /**
- * Created by Dmytro on 9/11/2016.
- *
  * --- Day 1: Not Quite Lisp ---
  *
  * Santa was hoping for a white Christmas, but his weather machine's "snow"
@@ -39,7 +37,7 @@
  */
 /* global mmodule, require, modules: true */
 
-exports.solution = function solution(commands) {
+exports.getLevelAndStep = function getLevelAndStep(commands) {
   return commands.split('').reduce((previousValue, currentValue, currentIndex) => {
     const value = {
       level: previousValue.level,
