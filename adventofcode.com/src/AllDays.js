@@ -9,6 +9,8 @@ const calculateTotalLength = require('./Day02').calculateTotalLength;
 const NewYearLights = require('./Day06').NewYearLights;
 const NewYearLightsWithBrightness = require('./Day06').NewYearLightsWithBrightness;
 
+const HamiltonianPath = require('./Day09').HamiltonianPath;
+
 console.log('==========   D A Y    1   ========================================');
 const result = getLevelAndStep(commands.puzzle);
 console.log(`Current level: ${result.level}`);
@@ -34,3 +36,12 @@ console.log('The total brightness of all lights combined after following Santa\'
 console.log(newYearLightsWithBrightness.countLights());
 
 console.log('==========   D A Y    9   ========================================');
+const hamiltonianPath = new HamiltonianPath();
+hamiltonianPath.addPathesFromFile('./Day09.txt');
+const pathes = hamiltonianPath.findRoute();
+console.log('\tThe shortest path:');
+console.log(`Path: ${pathes.shortestRoute}`);
+console.log(`Distance: ${pathes.shortestDistance}`);
+console.log('\tThe longest path:');
+console.log(`Path: ${pathes.longestRoute}`);
+console.log(`Distance: ${pathes.longestDistance}`);
