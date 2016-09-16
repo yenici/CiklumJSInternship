@@ -102,6 +102,25 @@ test('deepExtend: Extend by object with defined property', () => {
   expect(deepCompare(referal, obj)).toBe(true);
 });
 
+test('deepExtend: Extend by object with array in array property', () => {
+  const proto = {
+    a: [
+      1,
+      'Ok',
+      false,
+      { a1: 1, a2: 'Yes'},
+      [
+        2,
+        'Fail',
+        true,
+        { b1: 2, b2: 'No' },
+      ],
+    ],
+  }
+  const obj = deepExtend({}, proto);
+  expect(deepCompare(proto, obj)).toBe(true);
+});
+
 test('deepExtend: Extend by object with inheritance hierarchy', () => {
   function Parent() {
     this.ap = 'a in parent';

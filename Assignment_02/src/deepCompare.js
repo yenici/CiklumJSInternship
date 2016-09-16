@@ -3,10 +3,11 @@
  */
 function deepCompare(obj1, obj2) {
   if (typeof obj1 !== 'object' && typeof obj2 !== 'object') {
-    if (Number.isNaN(obj1) && Number.isNaN(obj2)) {
-      return true;
-    }
-    return obj1 === obj2;
+    return Object.is(obj1, obj2);
+    // if (Number.isNaN(obj1) && Number.isNaN(obj2)) {
+    //   return true;
+    // }
+    // return obj1 === obj2;
   }
   if (typeof obj1 !== 'object' || typeof obj2 !== 'object') {
     return false;
@@ -31,7 +32,7 @@ function deepCompare(obj1, obj2) {
       val2 = obj2[props[i]];
       if (typeof val1 === typeof val2) {
         if (typeof val1 === 'object') {
-          if (val1 instanceof Array) {
+          if (Array.isArray(val1)) {
             // Working with Array
             if (val1.length === val2.length) {
               for (let j = 0; j < val1.length; j += 1) {

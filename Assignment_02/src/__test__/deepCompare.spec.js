@@ -47,6 +47,10 @@ test('Objects with different number of properties', () => {
   expect(deepCompare({ a: 1 }, { a: 1, b: 2 })).toBe(false);
 });
 
+test('Compare { a: 1 } to { b: 1 }', () => {
+  expect(deepCompare({ a: 1 }, { b: 1 })).toBe(false);
+});
+
 test('Compare { a: 1 } to { a: 1 }', () => {
   expect(deepCompare({ a: 1 }, { a: 1 })).toBe(true);
 });
@@ -69,15 +73,19 @@ test('Compare objects with the same function', () => {
 });
 
 test('Compare objects with the same function\'s text', () => {
-  expect(deepCompare({ a: function (x) { return x * x; } }, { a: function (x) { return x * x; } })).toBe(true);
+  expect(deepCompare({ a: x => x * x }, { a: x => x * x })).toBe(true);
 });
 
 test('Compare objects with the same function\'s text (without spaces)', () => {
-  expect(deepCompare({ a: function (x) { return x * x; } }, { a: function (x) { return x*x; } })).toBe(true);
+  expect(deepCompare({ a: x => x * x }, { a: x => x * x })).toBe(true);
 });
 
 test('Compare objects with the differnt function\'s text', () => {
-  expect(deepCompare({ a: function (x) { return x * x; } }, { a: function (x) { return 2 * x; } })).toBe(false);
+  expect(deepCompare({ a: x => x * x }, { a: x => 2 * x })).toBe(false);
+});
+
+test('Compare objects with the equals key and different value types', () => {
+  expect(deepCompare({ a: x => x * x }, { a: { aa: true } })).toBe(false);
 });
 
 test('Compare two equals complicated objects', () => {
@@ -95,15 +103,11 @@ test('Compare two equals complicated objects', () => {
         c: 'Hello',
       },
     },
-    e: function(x, y) {
-      return x + y;
-    },
+    e: (x, y) => x + y,
   };
   const obj2 = {
     b: [1, 2, 3],
-    e: function(x, y) {
-      return x + y;
-    },
+    e: (x, y) => x + y,
     a: 1,
     c: 'Hello',
     d: {
@@ -135,15 +139,11 @@ test('Compare two complicated objects with distinction in number of props', () =
         c: 'Hello',
       },
     },
-    e: function(x, y) {
-      return x + y;
-    },
+    e: (x, y) => x + y,
   };
   const obj2 = {
     b: [1, 2, 3],
-    e: function(x, y) {
-      return x + y;
-    },
+    e: (x, y) => x + y,
     a: 1,
     c: 'Hello',
     d: {
@@ -175,15 +175,11 @@ test('Compare two complicated objects with distinction in props\' names', () => 
         c: 'Hello',
       },
     },
-    e: function(x, y) {
-      return x + y;
-    },
+    e: (x, y) => x + y,
   };
   const obj2 = {
     b: [1, 2, 3],
-    e: function(x, y) {
-      return x + y;
-    },
+    e: (x, y) => x + y,
     a: 1,
     c: 'Hello',
     d: {
