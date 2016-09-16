@@ -49,6 +49,27 @@ const fs = require('fs');
 
 class HamiltonianPath {
   constructor() {
+    // Route Storage:
+    //
+    // sistTable = Map(
+    //   [ city1, {
+    //     city2: distCity1ToCity2,
+    //     city3: distCity1ToCity3,
+    //     ...
+    //   } ],
+    //   [ city2, {
+    //     city1: distCity2ToCity1,
+    //     city3: distCity2ToCity3,
+    //     ...
+    //   } ],
+    //   [ city3, {
+    //     city1: distCity3ToCity1,
+    //     city2: distCity3ToCity2,
+    //     ...
+    //   } ],
+    //   ...
+    // )
+    // where city[x] - city's name
     this.distTable = new Map();
   }
 
