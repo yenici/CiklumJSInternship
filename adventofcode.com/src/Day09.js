@@ -139,8 +139,8 @@ class HamiltonianPath {
     for (const key of this.distTable.keys()) {
       cities.push(key);
     }
-    const pathes = this.constructor.getCombinations(cities.length);
-    return pathes.reduce((bestRoutes, path) => {
+    const paths = this.constructor.getCombinations(cities.length);
+    return paths.reduce((bestRoutes, path) => {
       const itinerary = path.reduce((route, index) => (
         {
           path: route.path.concat(cities[index]),
@@ -171,6 +171,55 @@ class HamiltonianPath {
     );
   }
 
+  /**
+   * Find the shortest route.
+   * This method is similar to findRoute method but has some
+   * optimizations.
+   * @returns {*}
+   */
+  findShortestRoute() {
+    const cities = [];
+    for (const key of this.distTable.keys()) {
+      cities.push(key);
+    }
+    const paths = this.constructor.getCombinations(cities.length);
+    return paths.reduce((shortestRoute, path) => {
+      const route = {
+        path: [],
+        distance: 0,
+        from: undefined,
+      };
+      for (let i = 0; i < path.length; i += 1) {
+        if (route.from) {
+          route.distance += this.distTable.get(route.from)[cities[path[i]]];
+        }
+        if (route.distance > shortestRoute.shortestDistance) {
+          // The current distance of the path is greater than
+          // the distance of the shortest path for this moment.
+          // There's no sense to continue computations.
+          route.distance = Number.POSITIVE_INFINITY;
+          break;
+        }
+        route.from = cities[path[i]];
+        route.path.push(route.from);
+      }
+      let updShortestRoute;
+      if (route.distance < shortestRoute.shortestDistance) {
+        updShortestRoute = {
+          shortestRoute: route.path,
+          shortestDistance: route.distance,
+        };
+      } else {
+        updShortestRoute = shortestRoute;
+      }
+      return updShortestRoute;
+    },
+      {
+        shortestRoute: undefined,
+        shortestDistance: Number.POSITIVE_INFINITY,
+      }
+    );
+  }
   /**
    * Implementation of Narayana's algorithm
    *
