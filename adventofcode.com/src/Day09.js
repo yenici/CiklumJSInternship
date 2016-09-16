@@ -75,6 +75,7 @@ class HamiltonianPath {
 
   /**
    * Adds a path the table of distances
+   * Use this method carefully to prevent data integrity corruption
    *
    * @param from
    * @param to
