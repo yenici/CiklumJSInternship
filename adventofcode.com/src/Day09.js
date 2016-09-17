@@ -139,8 +139,13 @@ class HamiltonianPath {
     for (const key of this.distTable.keys()) {
       cities.push(key);
     }
-    const paths = this.constructor.getCombinations(cities.length);
-    return paths.reduce((bestRoutes, path) => {
+    const optimalRoutes = {
+      shortestRoute: undefined,
+      shortestDistance: undefined,
+      longestRoute: undefined,
+      longestDistance: undefined,
+    };
+    for (const path of this.constructor.generatePermutations(cities.length)) {
       const itinerary = path.reduce((route, index) => (
         {
           path: route.path.concat(cities[index]),
@@ -148,27 +153,19 @@ class HamiltonianPath {
           distance: route.distance +
             (route.from ? this.distTable.get(route.from)[cities[index]] : 0),
         }
-        ), { path: [], from: undefined, distance: 0 });
-      const updBestRoutes = bestRoutes;
-      if (bestRoutes.shortestDistance === undefined
-        || itinerary.distance < bestRoutes.shortestDistance) {
-        updBestRoutes.shortestDistance = itinerary.distance;
-        updBestRoutes.shortestRoute = itinerary.path;
+      ), { path: [], from: undefined, distance: 0 });
+      if (optimalRoutes.shortestDistance === undefined
+        || itinerary.distance < optimalRoutes.shortestDistance) {
+        optimalRoutes.shortestDistance = itinerary.distance;
+        optimalRoutes.shortestRoute = itinerary.path;
       }
-      if (bestRoutes.longestDistance === undefined
-        || itinerary.distance > bestRoutes.longestDistance) {
-        updBestRoutes.longestDistance = itinerary.distance;
-        updBestRoutes.longestRoute = itinerary.path;
+      if (optimalRoutes.longestDistance === undefined
+        || itinerary.distance > optimalRoutes.longestDistance) {
+        optimalRoutes.longestDistance = itinerary.distance;
+        optimalRoutes.longestRoute = itinerary.path;
       }
-      return updBestRoutes;
-    },
-      {
-        shortestRoute: undefined,
-        shortestDistance: undefined,
-        longestRoute: undefined,
-        longestDistance: undefined,
-      }
-    );
+    }
+    return optimalRoutes;
   }
 
   /**
@@ -182,8 +179,11 @@ class HamiltonianPath {
     for (const key of this.distTable.keys()) {
       cities.push(key);
     }
-    const paths = this.constructor.getCombinations(cities.length);
-    return paths.reduce((shortestRoute, path) => {
+    let shortestRoute = {
+      shortestRoute: undefined,
+      shortestDistance: Number.POSITIVE_INFINITY,
+    };
+    for (const path of this.constructor.generatePermutations(cities.length)) {
       const route = {
         path: [],
         distance: 0,
@@ -196,29 +196,21 @@ class HamiltonianPath {
         if (route.distance > shortestRoute.shortestDistance) {
           // The current distance of the path is greater than
           // the distance of the shortest path for this moment.
-          // There's no sense to continue computations.
+          // There's no reason to continue computations.
           route.distance = Number.POSITIVE_INFINITY;
           break;
         }
         route.from = cities[path[i]];
         route.path.push(route.from);
       }
-      let updShortestRoute;
       if (route.distance < shortestRoute.shortestDistance) {
-        updShortestRoute = {
+        shortestRoute = {
           shortestRoute: route.path,
           shortestDistance: route.distance,
         };
-      } else {
-        updShortestRoute = shortestRoute;
       }
-      return updShortestRoute;
-    },
-      {
-        shortestRoute: undefined,
-        shortestDistance: Number.POSITIVE_INFINITY,
-      }
-    );
+    }
+    return shortestRoute;
   }
   /**
    * Implementation of Narayana's algorithm
@@ -235,15 +227,12 @@ class HamiltonianPath {
    *   https://en.wikipedia.org/wiki/Permutation
    *   http://www.sciencedirect.com/science/article/pii/0097316571900070
    *
-   * @param n
-   * @returns {Array}
+   * @param n - number of elements in a permutation
    */
-  static getCombinations(n) {
-    // const combinations = new Set();
-    const combinations = [];
+  static* generatePermutations(n) {
     if (n > 1) {
-      let items = Array.from(Array(n).keys());
-      combinations.push([].concat(items));
+      let items = Array.from(new Array(n).keys());
+      yield items;
       let k;
       let l;
       let done = false;
@@ -263,15 +252,14 @@ class HamiltonianPath {
           swap(k, l);
           // Reverse items from k+1 to n-1
           items = items.slice(0, k + 1).concat(items.slice(k + 1).reverse());
-          combinations.push([].concat(items));
+          yield items;
         }
       }
     } else if (n === 1) {
-      combinations.push([1]);
+      yield [1];
     } else {
-      throw Object.create({ message: 'HamiltonianPath.getCombinations. Wrong parameters.' });
+      throw Object.create({ message: 'HamiltonianPath.generatePermutations. Wrong parameters.' });
     }
-    return combinations;
   }
 }
 
