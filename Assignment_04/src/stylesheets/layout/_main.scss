@@ -1,0 +1,20 @@
+// --------------------------------------------------------------------------------
+// This file contains all styles related to the Main block of the site/application.
+// --------------------------------------------------------------------------------
+main {
+  padding: 0 5%;
+  //background-color: #004ab3;
+}
+
+.PythonBooks {
+  font-size: 0.8em;
+  padding: 1em 0;
+
+  &__text {
+    padding: 0 0.5em;
+  }
+
+  &__img {
+    vertical-align: middle;
+  }
+}
