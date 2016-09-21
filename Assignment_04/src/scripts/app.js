@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 
-import rootReducer from './reducer';
+import rootReducer from './Reducers/reducer';
 import MoviesTable from './Views/MoviesTable';
 import SearchMovie from './Views/SearchMovie';
 import Paginator from './Views/Paginator';

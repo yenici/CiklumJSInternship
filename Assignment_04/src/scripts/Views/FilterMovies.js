@@ -1,6 +1,6 @@
 /* global document: true */
 
-import { MovieTypeFilter, filterMovies } from '../actions';
+import { MovieTypeFilter, filterMovies } from '../Actions/actions';
 
 function FilterMovies(id, store) {
   this.rootElement = document.getElementById(id);

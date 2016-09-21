@@ -1,6 +1,6 @@
 /* global document: true */
 
-import { moveToPage } from '../actions';
+import { moveToPage } from '../Actions/actions';
 
 function Paginator(id, store) {
   this.rootElement = document.getElementById(id);

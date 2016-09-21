@@ -1,5 +1,5 @@
 /* global document: true */
-import { pinToFavorites, sortMovies } from '../actions';
+import { pinToFavorites, sortMovies } from '../Actions/actions';
 
 function MoviesTable(id, store) {
   this.rootElement = document.getElementById(id);

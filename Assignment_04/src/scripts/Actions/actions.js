@@ -1,4 +1,4 @@
-import getMovies from './getMovies';
+import getMovies from '../Utils/getMovies';
 
 export const MovieTypeFilter = {
   SHOW_ALL: 'all',

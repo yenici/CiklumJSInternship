@@ -8,7 +8,7 @@ import {
   SET_PAGE,
   PIN_TO_FAVORITES,
   UNPIN_FROM_FAVORITES,
-} from './actions';
+} from '../Actions/actions';
 
 const MOVIES_ON_PAGE = 15;
 
@@ -240,31 +240,58 @@ function rootReducer(state = initialAppState, action) {
       {
         // Remove the movie from favorites
         const newFavorites = state.favorites.filter(movie => movie.imdbID !== action.imdbId);
-        if (newFavorites.length !== state.favorites.length) { // If the movie was found in favorites
+        if (newFavorites.length !== state.favorites.length) { // The movie was found in favorites
           localStorage.setItem('FavoriteMovies', JSON.stringify(newFavorites)); // Save favorites
-          const movieFromFav = state.searchResult.movies    // Search for removed movie in
+          const movieFromFav = state.searchResult.movies    // Look for the removed movie in
             .find(movie => movie.imdbID === action.imdbId); // search results
           if (movieFromFav !== undefined) {
             // The unpinned movie is in the search result
             let newMovies = getMoviesWithoutFav(state.searchResult.movies, newFavorites);
-            // TODO:
-            if (state.filter !== MovieTypeFilter.SHOW_ALL) {}
-            if (state.order !== MovieSortOrder.SORT_NONE) {}
-            newState = Object.assign(
-              {},
-              state,
-              {
-                movies: newMovies,
-                favorites: newFavorites,
-                paginator: {
-                  currentPage: newMovies.length > 0 ? state.paginator.currentPage : 0,
-                  totalPages: Math.ceil(newMovies.length / MOVIES_ON_PAGE),
-                  onPage: MOVIES_ON_PAGE,
-                },
+            if (state.filter !== MovieTypeFilter.SHOW_ALL) {
+              newMovies = newMovies.filter(movie => movie.Type === state.filter);
+            }
+            if (state.order.name !== MovieSortOrder.SORT_NONE) {
+              if (state.order.ascending) {
+                newMovies.sort(moviesComparator(state.order.name));
+              } else {
+                newMovies.sort(moviesComparator(state.order.name, true));
               }
-            );
+            }
+            if (state.movies.length !== newMovies.length) {
+              // The unpinned movie is in visible movies list
+              const totalPages = Math.ceil(newMovies.length / MOVIES_ON_PAGE);
+              let currentPage;
+              if (state.paginator.currentPage === 0) {
+                // The unpinned movie is a single movie in visible movies list
+                currentPage = 1;
+              } else {
+                // Trying to store the current page number
+                currentPage = state.paginator.currentPage;
+              }
+              newState = Object.assign(
+                {},
+                state,
+                {
+                  movies: newMovies,
+                  favorites: newFavorites,
+                  paginator: {
+                    currentPage,
+                    totalPages,
+                    onPage: MOVIES_ON_PAGE,
+                  },
+                }
+              );
+            } else {
+              newState = Object.assign(
+                {},
+                state,
+                {
+                  favorites: newFavorites,
+                }
+              );
+            }
           } else {
-            // Unpinned movie does not affect the visible movies
+            // Unpinned movie does not affect the search result and visible movies
             newState = Object.assign(
               {},
               state,

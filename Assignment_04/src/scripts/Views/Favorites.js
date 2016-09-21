@@ -1,5 +1,5 @@
 /* global document: true */
-import { unpinFromFavorites } from '../actions';
+import { unpinFromFavorites } from '../Actions/actions';
 
 function Favorites(id, store) {
   this.rootElement = document.getElementById(id);
@@ -34,7 +34,7 @@ Favorites.prototype.render = function render() {
              title="Remove from favorites"
            >
              <i class="material-icons" data-from-favorite-id="${state.favorites[i].imdbID}">
-               favorite
+               clear
              </i>
            </button>
          </td>

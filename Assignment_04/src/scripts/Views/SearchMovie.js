@@ -1,6 +1,6 @@
 /* global document: true */
 
-import { fetchMovies } from '../actions';
+import { fetchMovies } from '../Actions/actions';
 
 function SearchMovie(id, store) {
   this.rootElement = document.getElementById(id);
