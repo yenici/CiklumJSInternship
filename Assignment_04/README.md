@@ -1,4 +1,5 @@
 A simple interface for [The Open Movie Database](http://www.omdbapi.com/)
+
 **Steps to start a local server:**
 
 `npm install`
