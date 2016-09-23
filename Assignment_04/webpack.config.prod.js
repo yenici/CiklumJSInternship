@@ -8,9 +8,9 @@ module.exports = {
   },
 
   output: {
-    path: __dirname.concat('/dist/scripts/'),
+    path: __dirname.concat('/dist'),
     publicPath: '',
-    filename: '[name].bundle.js',
+    filename: 'scripts/[name].bundle.js',
   },
 
   module: {
