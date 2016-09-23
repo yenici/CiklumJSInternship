@@ -6,6 +6,8 @@ const commands = require('./Day01.json');
 const calculateTotalArea = require('./Day02').calculateTotalArea;
 const calculateTotalLength = require('./Day02').calculateTotalLength;
 
+const Day03 = require('./Day03').Day03;
+
 const NewYearLights = require('./Day06').NewYearLights;
 const NewYearLightsWithBrightness = require('./Day06').NewYearLightsWithBrightness;
 
@@ -23,6 +25,14 @@ if (result.baseOnStep) {
 console.log('==========   D A Y    2   ========================================');
 console.log(`Total area of wrapping paper: ${calculateTotalArea('./Day02.txt')}`);
 console.log(`Total length of ribbon: ${calculateTotalLength('./Day02.txt')}`);
+
+console.log('==========   D A Y    3   ========================================');
+const santa = new Day03();
+santa.moveByRouteFromFile('./Day03.txt');
+console.log(`How many houses receive at least one present? ${santa.getVisitedHousesCount()}`);
+const roboSanta = new Day03(2);
+roboSanta.moveByRouteFromFile('./Day03.txt');
+console.log(`Santa + Rob-Santa: How many houses receive at least one present? ${roboSanta.getVisitedHousesCount()}`);
 
 console.log('==========   D A Y    6   ========================================');
 const newYearLights = new NewYearLights();
