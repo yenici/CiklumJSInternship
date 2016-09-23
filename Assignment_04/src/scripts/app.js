@@ -12,9 +12,6 @@ import Favorites from './Views/Favorites';
 import FilterMovies from './Views/FilterMovies';
 import Spinner from './Views/Spinner';
 
-require('../index.html');
-require('../images/favicon.ico');
-
 const appStore = createStore(
   rootReducer,
   applyMiddleware(

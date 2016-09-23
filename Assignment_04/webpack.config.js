@@ -1,6 +1,7 @@
 /* global require, __dirname: true */
 
 const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -24,7 +25,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
         query: {
@@ -43,7 +44,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'file?name=../[name].[ext]',
+        loader: 'raw',
       },
       {
         test: /\.ico$/,
@@ -68,4 +69,14 @@ module.exports = {
       }),
     ];
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      favicon: 'src/images/favicon.ico',
+      hash: true,
+      template: 'src/index.html',
+    }),
+  ],
+
 };

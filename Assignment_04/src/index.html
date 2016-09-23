@@ -3,16 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>OMDb - The Open Movie Database</title>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="./images/favicon.ico">
-    <!--                        Material Design Light                        -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <!-- Material Design Light -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css" />
     <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-    <!--                     End of Material Design Light                    -->
+    <!-- End of Material Design Light -->
     <style>
+      body {
+        background-color: #fafafa;
+      }
+      .mdl-card {
+        min-height: auto;
+        width: 100%;
+      }
+      .mdl-card__media {
+        background-color: #fff;
+      }
+      .mdl-spinner {
+        display: none;
+        margin-bottom: 1em;
+        margin-top: 1em;
+        /* Centering the spinner */
+        margin-left: -14px;
+        left: 50%;
+      }
       .mdl-data-table {
         table-layout:fixed;
         width:100%;
@@ -31,107 +47,130 @@
       .sort-column-header:hover {
         text-decoration: underline;
       }
+      .type-filter {
+        display: inline-block;
+        list-style: none;
+        padding-left: 1em;
+      }
+      .type-filter li {
+        display: inline;
+        padding: 1em;
+      }
+      .type-filter a {
+        color: inherit;
+      }
     </style>
   </head>
   <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <!--                               Header                                -->
+      <!-- Header -->
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title">OMDb - The Open Movie Database</span>
-          <div class="mdl-layout-spacer"></div>
-          <!--                            Search panel                             -->
-          <form action="#" id="js-search">
-            <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text" id="q" pattern="[A-Z,a-z, ]*"
-                      />
-              <label class="mdl-textfield__label" for="q">Enter a fragment of a title to search</label>
-              <span class="mdl-textfield__error">Letters and spaces only</span>
-            </div>
-            <button type="submit"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-              Search
-            </button>
-          </form>
         </div>
       </header>
       <main class="mdl-layout__content">
         <div class="page-content">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--7-col">
-              <!--                           Search results                            -->
-              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="js-movies">
-                <thead>
-                  <tr>
-                    <th style="width: 10%;">#</th>
-                    <th style="width: 55%;"
-                        class="mdl-data-table__cell--non-numeric"
-                        title="Click to sort by title"
-                    >
-                      <a class="sort-column-header" href="#" data-sort-by="Title">Title</a>
-                    </th>
-                    <th style="width: 10%;"
-                        class="mdl-data-table__cell--non-numeric"
-                        title="Click to sort by type"
-                    >
-                      <a class="sort-column-header" href="#" data-sort-by="Type">Type</a>
-                    </th>
-                    <th style="width: 15%;"
-                        class="mdl-data-table__cell--non-numeric"
-                        title="Click to sort by year"
-                    >
-                      <a class="sort-column-header" href="#" data-sort-by="Year">Year</a>
-                    </th>
-                    <th style="width: 10%;" class="mdl-data-table__cell--non-numeric">Like</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-              <!-- MDL Spinner Component -->
-              <div class="mdl-spinner mdl-js-spinner is-active"
-                   style="display: none; margin-top: 5em; margin-left: -14px; left: 50%;"
-                   id="js-spinner">
+              <div class="mdl-card mdl-shadow--3dp">
+                <div class="mdl-card__title">
+                  <!-- Search panel -->
+                  <form action="#" id="js-search">
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <input class="mdl-textfield__input" type="text" id="q" pattern="[A-Z,a-z, ]*"
+                      />
+                      <label class="mdl-textfield__label" for="q">Enter a fragment of a title to search</label>
+                      <span class="mdl-textfield__error">Letters and spaces only</span>
+                    </div>
+                    <button type="submit"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                      Search
+                    </button>
+                  </form>
+                </div>
+                <div class="mdl-card__media">
+                  <!-- MDL Spinner Component -->
+                  <div class="mdl-spinner mdl-js-spinner is-active" id="js-spinner"></div>
+                  <!-- Search results -->
+                  <table class="mdl-data-table mdl-js-data-table" id="js-movies">
+                    <thead>
+                    <tr>
+                      <th style="width: 10%;">#</th>
+                      <th style="width: 55%;"
+                          class="mdl-data-table__cell--non-numeric"
+                          title="Click to sort by title"
+                      >
+                        <a class="sort-column-header" href="#" data-sort-by="Title">Title</a>
+                      </th>
+                      <th style="width: 10%;"
+                          class="mdl-data-table__cell--non-numeric"
+                          title="Click to sort by type"
+                      >
+                        <a class="sort-column-header" href="#" data-sort-by="Type">Type</a>
+                      </th>
+                      <th style="width: 15%;"
+                          class="mdl-data-table__cell--non-numeric"
+                          title="Click to sort by year"
+                      >
+                        <a class="sort-column-header" href="#" data-sort-by="Year">Year</a>
+                      </th>
+                      <th style="width: 10%;" class="mdl-data-table__cell--non-numeric">Like</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="mdl-card__actions mdl-card--border mdl-grid">
+                  <!--<div class="mdl-grid">-->
+                  <div class="mdl-cell mdl-cell--8-col">
+                    <!-- Filter -->
+                    Filter by:
+                    <ul class="type-filter" id="js-filter">
+                    </ul>
+                  </div>
+                  <div class="mdl-cell mdl-cell--4-col">
+                    <!-- Paginator -->
+                    <div id="js-paginator">
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
+                        <i class="material-icons">chevron_left</i>
+                      </button>
+                      <span style="margin: 0 1em;"></span>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
+                        <i class="material-icons">chevron_right</i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+              </div>
             <div class="mdl-cell mdl-cell--5-col">
-              <!--                             Favorites                               -->
-              <h4>Favorites</h4>
-              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                <thead>
-                <tr>
-                  <th style="width: 10%;">#</th>
-                  <th style="width: 45%;" class="mdl-data-table__cell--non-numeric">Title</th>
-                  <th style="width: 15%;" class="mdl-data-table__cell--non-numeric">Type</th>
-                  <th style="width: 15%;" class="mdl-data-table__cell--non-numeric">Year</th>
-                  <th style="width: 15%;" class="mdl-data-table__cell--non-numeric">Del</th>
-                </tr>
-                </thead>
-                <tbody id="js-favorites">
-                </tbody>
-              </table>
+              <!-- Favorites -->
+              <div class="mdl-card mdl-shadow--3dp">
+                <div class="mdl-card__title">
+                  Favorites
+                </div>
+                <div class="mdl-card__media">
+                  <table class="mdl-data-table mdl-js-data-table">
+                    <thead>
+                    <tr>
+                      <th style="width: 10%;">#</th>
+                      <th style="width: 45%;" class="mdl-data-table__cell--non-numeric">Title</th>
+                      <th style="width: 15%;" class="mdl-data-table__cell--non-numeric">Type</th>
+                      <th style="width: 15%;" class="mdl-data-table__cell--non-numeric">Year</th>
+                      <th style="width: 15%;" class="mdl-data-table__cell--non-numeric">Del</th>
+                    </tr>
+                    </thead>
+                    <tbody id="js-favorites">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </main>
-      <!--                               Footer                                -->
-      <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer__left-section">
-          <div class="mdl-logo">Filter by:</div>
-          <ul class="mdl-mini-footer__link-list" id="js-filter"></ul>
-        </div>
-        <!--                             Paginator                               -->
-        <div class="mdl-mini-footer__middle-section" id="js-paginator">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            <i class="material-icons">chevron_left</i>Prev
-          </button>
-          <span style="margin: 0 2em;"></span>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Next<i class="material-icons">chevron_right</i>
-          </button>
-        </div>
-      </footer>
     </div>
-    <script src="scripts/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>

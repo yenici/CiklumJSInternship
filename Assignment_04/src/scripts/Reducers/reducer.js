@@ -10,7 +10,7 @@ import {
   UNPIN_FROM_FAVORITES,
 } from '../Actions/actions';
 
-const MOVIES_ON_PAGE = 15;
+const MOVIES_ON_PAGE = 7;
 
 /**
  * Initial state of a store

@@ -21,7 +21,7 @@ FilterMovies.prototype.render = function render() {
   Object.keys(MovieTypeFilter).forEach((key) => {
     if (MovieTypeFilter[key] === state.filter) {
       this.rootElement.insertAdjacentHTML('beforeend',
-        `<li class="mdl-logo">${MovieTypeFilter[key]}</li>`
+        `<li>${MovieTypeFilter[key]}</li>`
       );
     } else {
       this.rootElement.insertAdjacentHTML('beforeend',
