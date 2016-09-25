@@ -1,7 +1,7 @@
 /* global require: true */
 
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger'; // Comment for NODE_ENV=production!
+// import createLogger from 'redux-logger'; // Comment for NODE_ENV=production!
 import { createStore, applyMiddleware } from 'redux';
 
 import rootReducer from './Reducers/reducer';
@@ -15,8 +15,8 @@ import Spinner from './Views/Spinner';
 const appStore = createStore(
   rootReducer,
   applyMiddleware(
-    thunkMiddleware, // lets us dispatch() functions
-    createLogger()   // neat middleware that logs actions. Comment for NODE_ENV=production!
+    thunkMiddleware // lets us dispatch() functions
+    // createLogger()   // neat middleware that logs actions. Comment for NODE_ENV=production!
   )
 );
 
