@@ -1,6 +1,6 @@
 import { isNumber, fromJson } from 'angular';
 
-let OmdbService = function OmdbService($httpParamSerializer, $http, $q, config) {
+const OmdbService = function OmdbService($httpParamSerializer, $http, $q, config) {
   return {
     getMoviePage(title, page = 1) {
       const url = config.omdbUrl.concat(
@@ -18,8 +18,11 @@ let OmdbService = function OmdbService($httpParamSerializer, $http, $q, config) 
               movies: json.Search,
             };
           }
-          return [];
-        }, () => []); // TODO: Error handling
+          return {
+            count: 0,
+            movies: [],
+          };
+        }, () => ({ count: 0, movies: [] })); // TODO: Error handling
     },
     searchMovie(title) {
       return this.getMoviePage(title, 1)

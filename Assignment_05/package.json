@@ -17,7 +17,7 @@
   "main": "src/app/app.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack --config=webpack.config.prod.js --define process.env.NODE_ENV='\"production\"' --colors --progress --optimize-minimize",
+    "build": "webpack --config=webpack.config.js --define process.env.NODE_ENV='\"production\"' --colors --progress --optimize-minimize",
     "server": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors",
     "start": "npm run server"
   },
