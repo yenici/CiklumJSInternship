@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>OMDb - The Open Movie Database</title>
+    <!-- Material Design Light -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css" />
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <!-- End of Material Design Light -->
+    <style>
+      body {
+        background-color: #fafafa;
+      }
+      .mdl-card {
+        min-height: auto;
+        width: 100%;
+      }
+      .mdl-card__media {
+        background-color: #fff;
+      }
+      .mdl-spinner {
+        margin-bottom: 1em;
+        margin-top: 1em;
+        /* Centering the spinner */
+        margin-left: -14px;
+        left: 50%;
+      }
+      .mdl-data-table {
+        table-layout:fixed;
+        width:100%;
+      }
+      .mdl-data-table td, th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sort-column-header {
+        display: inline-block;
+        color: inherit;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .sort-column-header:hover {
+        text-decoration: underline;
+      }
+      .type-filter {
+        display: inline-block;
+        list-style: none;
+        padding-left: 1em;
+      }
+      .type-filter li {
+        display: inline;
+        padding: 1em;
+      }
+      .type-filter a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <!-- Header -->
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">OMDb - The Open Movie Database</span>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--7-col">
+              <div ng-controller="FirstCtrl as t" class="mdl-card mdl-shadow--3dp">
+                <div class="mdl-card__title">
+                  <!-- Search panel -->
+                  <form novalidate ng-submit="t.searchMovie()">
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <input
+                        ng-model="t.query"
+                        ng-disabled="t.queryInProgress"
+                        class="mdl-textfield__input"
+                        type="text"
+                        required=""
+                        id="q" />
+                      <label class="mdl-textfield__label" for="q">Enter a fragment of a title to search</label>
+                      <span class="mdl-textfield__error">Please, enter a title of a movie to search</span>
+                    </div>
+                    <button
+                      ng-disabled="t.queryInProgress"
+                      type="submit"
+                      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                      Search
+                    </button>
+                  </form>
+                </div>
+                <div class="mdl-card__media">
+                  <!-- MDL Spinner Component -->
+                  <div
+                    ng-show="t.queryInProgress"
+                    ng-class="{'is-active': t.queryInProgress}"
+                    class="mdl-spinner mdl-js-spinner">
+                  </div>
+                  <!-- Search results -->
+                  <table
+                    ng-hide="t.queryInProgress"
+                    class="mdl-data-table mdl-js-data-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 10%;">#</th>
+                        <th ng-click="t.setOrder('Title')"
+                            ng-class="{
+                             'mdl-data-table__header--sorted-ascending': t.orderExpr === 'Title' && !t.orderDesc,
+                             'mdl-data-table__header--sorted-descending': t.orderExpr === 'Title' && t.orderDesc,
+                            }"
+                            style="width: 55%;"
+                            class="mdl-data-table__cell--non-numeric"
+                            title="Click to sort by title"
+                        >
+                          <a class="sort-column-header" href="#" data-sort-by="Title">Title</a>
+                        </th>
+                        <th ng-click="t.setOrder('Type')"
+                            ng-class="{
+                             'mdl-data-table__header--sorted-ascending': t.orderExpr === 'Type' && !t.orderDesc,
+                             'mdl-data-table__header--sorted-descending': t.orderExpr === 'Type' && t.orderDesc,
+                            }"
+                            style="width: 10%;"
+                            class="mdl-data-table__cell--non-numeric"
+                            title="Click to sort by type"
+                        >
+                          <a class="sort-column-header" href="#" data-sort-by="Type">Type</a>
+                        </th>
+                        <th ng-click="t.setOrder('Year')"
+                            ng-class="{
+                             'mdl-data-table__header--sorted-ascending': t.orderExpr === 'Year' && !t.orderDesc,
+                             'mdl-data-table__header--sorted-descending': t.orderExpr === 'Year' && t.orderDesc,
+                            }"
+                            style="width: 15%;"
+                            class="mdl-data-table__cell--non-numeric"
+                            title="Click to sort by year"
+                        >
+                          <a class="sort-column-header" href="#" data-sort-by="Year">Year</a>
+                        </th>
+                        <th style="width: 10%;" class="mdl-data-table__cell--non-numeric">Like</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-show="!t.movies.length">
+                        <td colspan="5">Unfortunately, there are no results found.</td>
+                      </tr>
+                      <tr ng-hide="!t.movies.length"
+                          ng-repeat="movie in t.movies | filter: {Type: t.filterExpr} |orderBy:t.orderExpr:t.orderDesc">
+                        <td>{{$index + 1}}</td>
+                        <td class="mdl-data-table__cell--non-numeric" title="{{movie.Title}}">
+                          {{movie.Title}}
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">{{movie.Type}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{movie.Year}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                          <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"
+                                  id="{{movie.imdbID}}"
+                                  data-add-favorite-id="{{movie.imdbID}}"
+                                  title="Add to favorites"
+                          >
+                            <i class="material-icons" data-add-favorite-id="{{movie.imdbID}}">
+                              favorite_border
+                            </i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div
+                  ng-hide="t.queryInProgress"
+                  class="mdl-card__actions mdl-card--border mdl-grid">
+                  <div class="mdl-cell mdl-cell--8-col">
+                    <!-- Filter -->
+                    Filter by:
+                    <ul class="type-filter">
+                      <li><a ng-click="t.setFilter('')" href="#">all</a></li>
+                      <li ng-repeat="type in t.movieTypes" ng-hide="type === t.filterExpr">
+                        <a ng-click="t.setFilter(type)" href="#">{{type}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mdl-cell mdl-cell--4-col">
+                    <!-- Paginator -->
+                    <div>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
+                        <i class="material-icons">chevron_left</i>
+                      </button>
+                      <span style="margin: 0 1em;"></span>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect">
+                        <i class="material-icons">chevron_right</i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--5-col">
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
