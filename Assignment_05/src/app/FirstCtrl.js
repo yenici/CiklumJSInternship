@@ -19,8 +19,10 @@ export default class FirstCtrl {
     });
   }
   setOrder(order) {
-    this.orderDesc = (this.orderExpr === order) ? !this.orderDesc : false;
-    this.orderExpr = order;
+    if (this.movies.length > 0) {
+      this.orderDesc = (this.orderExpr === order) ? !this.orderDesc : false;
+      this.orderExpr = order;
+    }
   }
   setFilter(filter) {
     this.filterExpr = filter;
