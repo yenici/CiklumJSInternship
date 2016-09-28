@@ -43,9 +43,7 @@
     <!-- Search results -->
     <tr ng-hide="!$ctrl.movies.length" ng-repeat="movie in $ctrl.movies | pageFilter: $ctrl.paginator.currentPage">
       <td>{{($ctrl.paginator.currentPage - 1) * $ctrl.config.moviesOnPage + $index + 1}}</td>
-      <td class="mdl-data-table__cell--non-numeric" title="{{movie.Title}}">
-        {{movie.Title}}
-      </td>
+      <td class="mdl-data-table__cell--non-numeric" title="{{movie.Title}}">{{movie.Title}}</td>
       <td class="mdl-data-table__cell--non-numeric">{{movie.Type}}</td>
       <td class="mdl-data-table__cell--non-numeric">{{movie.Year}}</td>
       <td class="mdl-data-table__cell--non-numeric">

@@ -7,7 +7,11 @@
              style="color: #757575; background-color: #fff;">
             movie
           </i>
-          <span ng-bind="movie.Title"></span>
+
+          <span>
+            <a ui-sref-active="active" ui-sref="moviestore.movie({ imdbID: movie.imdbID })">{{movie.Title}}</a>
+          </span>
+
           <span class="mdl-list__item-sub-title">
             <span ng-bind="movie.Type"></span>, <span ng-bind="movie.Year"></span>
           </span>

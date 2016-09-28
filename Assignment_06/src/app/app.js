@@ -4,6 +4,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
 import Components from './components/components';
+import OmdbService from './components/movie-store/omdb.service';
 
 require('../stylesheets/main.scss');
 
@@ -12,6 +13,7 @@ const root = angular
     Components,
     uiRouter,
   ])
+  .service('OmdbService', OmdbService)
   .config(($stateProvider, $urlRouterProvider) => {
     $stateProvider
       .state('moviestore', {
@@ -23,7 +25,7 @@ const root = angular
         url: '/{imdbID}',
         component: 'moviedetails',
         resolve: {
-          movie: (movies, $stateParams) => null,
+          movie: (OmdbService, $stateParams) => OmdbService.getMovieDetails($stateParams.imdbID),
         },
       });
     $urlRouterProvider.otherwise('/');
