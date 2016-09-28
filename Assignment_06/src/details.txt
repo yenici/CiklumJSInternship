@@ -1,0 +1,43 @@
+star star_border star_half
+
+Title:"Pirates of the Caribbean: The Curse of the Black Pearl"
+Year:"2003"
+Released:"09 Jul 2003"
+DVD:"02 Dec 2003"
+Runtime:"143 min"
+Country:"USA"
+Rated:"PG-13"
+Genre:"Action, Adventure, Fantasy"
+Language:"English"
+Poster:"http://ia.media-imdb.com/images/M/MV5BMjAyNDM4MTc2N15BMl5BanBnXkFtZTYwNDk0Mjc3._V1_SX300.jpg"
+Website:"http://disney.go.com/disneyvideos/liveaction/pirates/main_site/main.html"
+Plot:"This swash-buckling tale follows the quest of Captain Jack Sparrow, a savvy pirate, and Will Turner, a resourceful blacksmith, as they search for Elizabeth Swann. Elizabeth, the daughter of the governor and the love of Will's life, has been kidnapped by the feared Captain Barbossa. Little do they know, but the fierce and clever Barbossa has been cursed. He, along with his large crew, are under an ancient curse, doomed for eternity to neither live, nor die. That is, unless a blood sacrifice is made."
+
+Production:"Buena Vista Pictures"
+Director:"Gore Verbinski"
+Writer:"Ted Elliott (screen story), Terry Rossio (screen story), Stuart Beattie (screen story), Jay Wolpert (screen story), Ted Elliott (screenplay), Terry Rossio (screenplay)"
+Actors:"Johnny Depp, Geoffrey Rush, Orlando Bloom, Keira Knightley"
+
+Awards:"Nominated for 5 Oscars. Another 31 wins & 88 nominations."
+
+imdbID:"tt0325980"
+imdbRating:"8.1"
+imdbVotes:"812,997"
+
+Type:"movie"
+Response:"True"
+
+BoxOffice:"N/A"
+Metascore:"63"
+
+tomatoConsensus:"May leave you exhausted like the theme park ride that inspired it; however, you'll have a good time when it's over."
+tomatoFresh:"165"
+tomatoImage:"certified"
+tomatoMeter:"79"
+tomatoRating:"7.1"
+tomatoReviews:"209"
+tomatoRotten:"44"
+tomatoURL:"http://www.rottentomatoes.com/m/pirates_of_the_caribbean_the_curse_of_the_black_pearl/"
+tomatoUserMeter:"86"
+tomatoUserRating:"3.9"
+tomatoUserReviews:"33123186"

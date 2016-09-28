@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+//     Media Queries
+//-----------------------------------------------------------------------------
+$device_width_phone: 320px;
+$device_width_tablet: 768px;
+$device_width_desktop: 940px;
+
+$font-main: "Open Sans", "Roboto", sans-serif;
+$font-condensed: "Open Sans Condensed", sans-serif;
+$font-inputs: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$header-height-fixed: 120px;
+
+$color-background: #fafafa;
+$color-text: #fff;
