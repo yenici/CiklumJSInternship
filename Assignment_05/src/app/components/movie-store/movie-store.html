@@ -1,0 +1,6 @@
+<div class="mdl-card mdl-shadow--3dp">
+  <div class="mdl-card__title">Personal collection of the best movies</div>
+  <favorites favorite-movies="$ctrl.favoriteMovies" on-unpin-movie="$ctrl.unpinFavoriteMovie($event)"></favorites>
+  <search query="$ctrl.query" search-in-progress="$ctrl.searchInProgress" on-search-submit="$ctrl.searchMovie($event)"></search>
+  <moviestable all-movies="$ctrl.workingMovies" on-pin-to-favorites="$ctrl.pinMovieToFavorites($event)"></moviestable>
+</div>

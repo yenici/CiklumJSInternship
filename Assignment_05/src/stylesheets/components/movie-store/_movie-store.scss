@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the MovieStore component.
+// -----------------------------------------------------------------------------
+@import 'favorites/_favorites',
+'movies-table/_movies-table',
+'search/_search';
+
+.mdl-layout__content {
+  padding: 1em;
+}
+
+.mdl-card {
+  //min-height: auto;
+  padding: 1em;
+  width: 100%;
+}
+
+.mdl-card__media {
+  background-color: #fff;
+}

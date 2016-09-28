@@ -1,22 +1,25 @@
-/* global document: true */
+/* global require, document: true */
 
 import angular from 'angular';
-// import uiRouter from 'angular-ui-router';
+import uiRouter from 'angular-ui-router';
 
-// import AppComponent from './app.component';
-import FirstCtrl from './OmdbCtrl';
-import OmdbService from './OmdbService';
-import FavoritesService from './FavoritesService';
+import Components from './components/components';
 
-angular.module('openmdbapp', [])
-  .constant('config', {
-    omdbUrl: 'http://www.omdbapi.com/?',
-    omdbRespMovOnPage: 10,
-    moviesOnPage: 7,
+require('../stylesheets/main.scss');
+
+const root = angular
+  .module('root', [
+    Components,
+    uiRouter,
+  ])
+  .config(($stateProvider, $urlRouterProvider) => {
+    $stateProvider
+      .state('moviestore', {
+        url: '/',
+        component: 'moviestore',
+      });
+    $urlRouterProvider.otherwise('/');
   })
-  .controller('OmdbCtrl', ['FavoritesService', 'OmdbService', FirstCtrl])
-  .factory('FavoritesService', ['$window', FavoritesService])
-  .factory('OmdbService',
-    ['$httpParamSerializer', '$http', '$q', 'config', OmdbService]);
+  .name;
 
-angular.bootstrap(document, ['openmdbapp']);
+angular.bootstrap(document, [root]);

@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the Favorites component.
+// -----------------------------------------------------------------------------
+.mdl-data-table {
+  table-layout:fixed;
+  width:100%;
+}
+
+.mdl-data-table td, th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sort-column-header {
+  display: inline-block;
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.sort-column-header:hover {
+  text-decoration: underline;
+}
+
+.type-filter {
+  display: inline-block;
+  list-style: none;
+  padding-left: 1em;
+}
+
+.type-filter li {
+  display: inline;
+  padding: 1em;
+}
+
+.type-filter a {
+  color: inherit;
+}
