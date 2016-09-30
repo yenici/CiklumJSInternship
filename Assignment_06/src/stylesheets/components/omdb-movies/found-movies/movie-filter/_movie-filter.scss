@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
-// This file contains CSS helper classes.
+// This file contains all styles related to the MovieFilter component.
 // -----------------------------------------------------------------------------
 
-/**
- * Clear inner floats
- */
-.clearfix::after {
-  clear: both;
-  content: '';
-  display: table;
+.movie-filter {
+  font-size: 1em;
+  padding: 0.5em;
+
+  &__control {
+    margin: 0 0.1em;
+  }
 }

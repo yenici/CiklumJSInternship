@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+$footer-color-bg: #3db5d8;
+$footer-color-link: #0088cc;
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: $footer-height-fixed;
+  width: 100vw;
+  background-color: $footer-color-bg;
+  font-size: 0.6rem;
+  line-height: 2rem;
+  text-align: center;
+}

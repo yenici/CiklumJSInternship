@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the FoundMovies component.
+// -----------------------------------------------------------------------------
+$found-movies-border-color: #3db5d8;
+$found-movies-controls-bg-color: #5bc0de;
+$found-movies-paginator-bg-color: #43ac6a;
+
+.found-movies {
+  margin: 0.5em 0;
+  //padding: 0.5em;
+  border: 1px solid $found-movies-border-color;
+
+  &__controls {
+    background-color: $found-movies-controls-bg-color;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-around;
+  }
+
+  &__results {
+    display: flex;
+    padding: 0.5em 0;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: space-around;
+  }
+
+  &__paginator {
+    background-color: $found-movies-paginator-bg-color;
+    padding: 0.5em 1em;
+  }
+}

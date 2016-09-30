@@ -1,0 +1,18 @@
+<div class="movie-filter">
+  <b>Filter by:</b>
+  <button
+    ng-click="$ctrl.onFilterClick('all')"
+    ng-disabled="$ctrl.filterExpr === 'all'"
+    class="movie-filter__control"
+    title="Click to stop filter the movies">
+      All
+  </button>
+  <button
+    ng-repeat="type in $ctrl.filterTypes"
+    ng-disabled="type === $ctrl.filterExpr"
+    ng-click="$ctrl.onFilterClick(type)"
+    class="movie-filter__control"
+    title="Click to filter the movies by the type '{{type}}'">
+    {{type}}
+  </button>
+</div>

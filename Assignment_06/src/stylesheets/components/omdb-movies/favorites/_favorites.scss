@@ -1,6 +1,11 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the Favorites component.
 // -----------------------------------------------------------------------------
-.mdl-list {
-  background-color: rgb(250, 255, 189);
+
+.favorites {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: space-around;
 }

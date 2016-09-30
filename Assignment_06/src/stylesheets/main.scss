@@ -5,13 +5,34 @@
 'abstracts/_functions',
 'abstracts/_mixins';
 
-// 2. Base stuff
+// 2. Vendors
+@import 'vendor/_normalize';
+
+// 3. Base stuff
 @import 'base/_base',
 'base/_fonts',
 'base/_typography',
 'base/_helpers',
 'base/_sprites';
 
-// 3. components
-@import 'components/movie-store/_movie-store';
-@import 'components/movie-details/_movie-details';
+// 4. Layout-related sections
+@import 'layout/_header',
+'layout/_info',
+'layout/_main',
+'layout/_footer';
+
+// 5. components
+@import 'components/_omdb-movies',
+'components/omdb-movies/movie-brief/_movie-brief',
+'components/omdb-movies/favorites/_favorites',
+'components/omdb-movies/search/_search',
+'components/omdb-movies/found-movies/_found-movies',
+'components/omdb-movies/spinner/_spinner',
+'components/omdb-movies/found-movies/movie-sort/_movie-sort',
+'components/omdb-movies/found-movies/movie-filter/_movie-filter';
+
+// 6. Page-specific styles
+@import 'pages/_home';
+
+// 7. Themes
+@import 'themes/_default';

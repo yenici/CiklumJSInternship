@@ -4,30 +4,36 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
 import Components from './components/components';
-import OmdbService from './components/movie-store/omdb.service';
+// import OmdbService from './components/omdb-movies/omdb.service';
 
 require('../stylesheets/main.scss');
+require('../images/noposter.png');
 
 const root = angular
   .module('root', [
     Components,
     uiRouter,
   ])
-  .service('OmdbService', OmdbService)
+  // .service('OmdbService', OmdbService)
   .config(($stateProvider, $urlRouterProvider) => {
     $stateProvider
-      .state('moviestore', {
+      .state('omdbmovies', {
         url: '/',
-        component: 'moviestore',
+        component: 'omdbmovies',
       });
-    $stateProvider
-      .state('moviestore.movie', {
-        url: '/{imdbID}',
-        component: 'moviedetails',
-        resolve: {
-          movie: (OmdbService, $stateParams) => OmdbService.getMovieDetails($stateParams.imdbID),
-        },
-      });
+    // $stateProvider
+    //   .state('moviestore', {
+    //     url: '/old',
+    //     component: 'moviestore',
+    //   });
+    // $stateProvider
+    //   .state('moviestore.movie', {
+    //     url: '/{imdbID}',
+    //     component: 'moviedetails',
+    //     resolve: {
+    //       movie: (OmdbService, $stateParams) => OmdbService.getMovieDetails($stateParams.imdbID),
+    //     },
+    //   });
     $urlRouterProvider.otherwise('/');
   })
   .name;

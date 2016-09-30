@@ -18,7 +18,7 @@ class OmdbService {
   pinToFavorites(movieToPin) {
     const favorites = this.getFavorites();
     if (favorites.find(movie => movie.imdbID === movieToPin.imdbID) === undefined) {
-      const newFavorites = favorites.concat([movieToPin]);
+      const newFavorites = [...favorites, movieToPin];
       try {
         this.$window.localStorage.setItem('omdbFavorites', toJson(newFavorites));
         return newFavorites;
@@ -103,7 +103,7 @@ class OmdbService {
     if (allComments[imdbID] === undefined) {
       allComments[imdbID] = Array.of(newComment);
     } else {
-      allComments[imdbID].push(newComment);
+      allComments[imdbID] = [...allComments[imdbID], newComment];
     }
     try {
       this.$window.localStorage.setItem('omdbComments', toJson(allComments));

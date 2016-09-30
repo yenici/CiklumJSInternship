@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+$header-color-bg: #3db5d8;
+$header-color-text: #fff;
+
+header {
+  background-color: $header-color-bg;
+  color: $header-color-text;
+  height: $header-height-fixed;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  // Using z-index to prervent overlapping
+  z-index: 1000;
+}
+
+.header__title {
+  font-size: 2rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+

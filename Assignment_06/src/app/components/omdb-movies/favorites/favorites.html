@@ -1,0 +1,9 @@
+<div class="favorites">
+  <moviebrief
+    ng-repeat="item in $ctrl.favoriteMovies"
+    movie="item"
+    in-favorites="true"
+    on-pin-unpin-movie="$ctrl.unpinMovie($event)"
+  >
+  </moviebrief>
+</div>

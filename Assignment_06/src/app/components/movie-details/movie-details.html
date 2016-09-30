@@ -38,6 +38,12 @@
   </div>
   <div class="mdl-card__supporting-text mdl-card--border">
     <b>Comments:</b>
+    <ul ng-hide="$ctrl.movie.Comments.length === 0">
+      <li ng-repeat="item in $ctrl.movie.Comments">
+        {{item.date}} {{item.author}}
+        <p>{{item.comment}}</p>
+      </li>
+    </ul>
   </div>
   <div class="mdl-card__actions mdl-card--border">
     <a ui-sref-active="active" ui-sref="moviestore"

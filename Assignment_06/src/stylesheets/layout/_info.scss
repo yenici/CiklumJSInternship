@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the info of the site/application.
+// -----------------------------------------------------------------------------
+$info-block-max-width: 1140px;
+
+$info-color-bg: rgba(240, 240, 240, 0.2);
+$info-color_border-shadow: #fff;
+$info-color-title: #f7df1e;
+$info-color-text: #fff;
+
+.InfoBlock {
+  padding: $header-height-fixed 1em 0;
+
+  &__container {
+    align-items: flex-start;
+    align-content: space-between;
+    background: $info-color-bg;
+    border-radius: 4px;
+    box-shadow: 0 0 4px $info-color_border-shadow;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 2em auto;
+    max-width: $info-block-max-width;
+    padding: 0.75em 0.25em 0.5em;
+  }
+
+  &__section {
+    color: $info-color-text;
+    font-size: 0.8em;
+    flex: 1;
+    padding: 0 1em 1.5em;
+
+    h4 {
+      color: $info-color-title;
+      font: {
+        family: $font-condensed;
+        size: 1rem;
+      }
+      margin: 0 0 0.25em;
+      text-transform: uppercase;
+    }
+
+    a {
+      color: $info-color-text;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

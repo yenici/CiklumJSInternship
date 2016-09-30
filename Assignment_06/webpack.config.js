@@ -17,7 +17,8 @@ module.exports = {
   devtool: 'source-map',
 
   devServer: {
-    host: 'localhost',
+    // host: 'localhost',
+    host: '192.168.0.2',
     port: 3000,
     contentBase: 'dist/'
   },
@@ -49,6 +50,10 @@ module.exports = {
       },
       {
         test: /\.png$/,
+        loader: 'file?name=../images/[name].[ext]'
+      },
+      {
+        test: /\.jpg$/,
         loader: 'file?name=../images/[name].[ext]'
       }
     ]
