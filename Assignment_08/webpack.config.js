@@ -5,13 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: __dirname.concat('/src/app/app.js')
+    app: __dirname.concat('/src/app/app.js'),
   },
 
   output: {
     path: __dirname.concat('/dist/'),
     publicPath: '',
-    filename: 'scripts/[name].bundle.js'
+    filename: 'scripts/[name].bundle.js',
   },
 
   devtool: 'source-map',
@@ -20,7 +20,7 @@ module.exports = {
     host: 'localhost',
     // host: '192.168.0.2',
     port: 3000,
-    contentBase: 'dist/'
+    contentBase: 'dist/',
   },
 
   module: {
@@ -28,35 +28,35 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel',
       },
       {
         test: /\.json$/,
         exclude: /node_modules/,
-        loader: 'json'
+        loader: 'json',
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loader: 'style!css!postcss!sass'
+        loader: 'style!css!postcss!sass',
       },
       {
         test: /\.html$/,
-        loader: 'raw'
+        loader: 'raw',
       },
       {
         test: /\.ico$/,
-        loader: 'file?name=../images/[name].[ext]'
+        loader: 'file?name=../images/[name].[ext]',
       },
       {
         test: /\.png$/,
-        loader: 'file?name=../images/[name].[ext]'
+        loader: 'file?name=../images/[name].[ext]',
       },
       {
         test: /\.jpg$/,
-        loader: 'file?name=../images/[name].[ext]'
-      }
-    ]
+        loader: 'file?name=../images/[name].[ext]',
+      },
+    ],
   },
 
   postcss: function postcss() {
@@ -66,24 +66,24 @@ module.exports = {
           '>1%',
           'last 4 versions',
           'Firefox ESR',
-          'not ie < 9' // React doesn't support IE8 anyway
-        ]
-      })
+          'not ie < 9', // React doesn't support IE8 anyway
+        ],
+      }),
     ];
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      favicon: 'src/static/favicon.ico',
+      favicon: 'src/images/favicon.ico',
       hash: true,
-      template: 'src/index.html'
-    })
+      template: 'src/index.html',
+    }),
   ],
 
   eslint: {
-    configFile: '.eslintrc'
-  }
+    configFile: '.eslintrc',
+  },
 
   // http://stackoverflow.com/questions/30030031/passing-environment-dependent-variables-in-webpack
   // const config = require('config');

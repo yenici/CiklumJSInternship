@@ -3,10 +3,51 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Pokéapi - The RESTful Pokémon API Implementation</title>
-    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+    <title>Pokédex (Powered by Pokéapi - The RESTful Pokémon API)</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-  HELLO!
+
+  <div class="pockemon-card">
+    <div class="pockemon-card__image"
+         style="background-image: url(images/1.png)"
+         title="Pockemon Bulbasaur">
+      <div class="pockemon-card__id">#001</div>
+      <div class="pockemon-card__image-fav">
+        <i class="material-icons">favorite_border</i>
+      </div>
+    </div>
+    <h2 class="pockemon-card__name">Bulbasaur</h2>
+    <div class="pockemon-card__abilities">
+      <div class="pockemon-card__type pockemon-card__type--grass">Grass</div>
+      <div class="pockemon-card__type pockemon-card__type--poison">Poison</div>
+    </div>
+    <div class="pockemon-card__action-wrapper">
+      <button class="pockemon-card__btn pockemon-card__btn--add">Add to favorites</button>
+      <button class="pockemon-card__btn pockemon-card__btn--rm">Remove from favorites</button>
+    </div>
+  </div>
+
+  <div class="pockemon-card pockemon-card--favorite">
+    <div class="pockemon-card__image"
+         style="background-image: url(images/521.png)"
+         title="Pockemon Bulbasaur">
+      <div class="pockemon-card__id">#521</div>
+      <div class="pockemon-card__image-fav">
+        <i class="material-icons">favorite_border</i>
+      </div>
+    </div>
+    <h2 class="pockemon-card__name">Unfezant</h2>
+    <div class="pockemon-card__abilities">
+      <div class="pockemon-card__type pockemon-card__type--normal">Normal</div>
+      <div class="pockemon-card__type pockemon-card__type--flying">Flying</div>
+    </div>
+    <div class="pockemon-card__action-wrapper">
+      <button class="pockemon-card__btn pockemon-card__btn--add">Add to favorites</button>
+      <button class="pockemon-card__btn pockemon-card__btn--rm">Remove from favorites</button>
+    </div>
+  </div>
+
   </body>
 </html>
