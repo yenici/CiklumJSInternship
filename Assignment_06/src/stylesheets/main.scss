@@ -22,14 +22,18 @@
 'layout/_footer';
 
 // 5. components
-@import 'components/_omdb-movies',
-'components/omdb-movies/movie-brief/_movie-brief',
-'components/omdb-movies/favorites/_favorites',
-'components/omdb-movies/search/_search',
+@import
+'components/common/movie-brief/_movie-brief',
+'components/common/favorites/_favorites',
+'components/common/spinner/_spinner',
+'components/start/search/_search',
+'components/omdb-movies/_omdb-movies',
 'components/omdb-movies/found-movies/_found-movies',
-'components/omdb-movies/spinner/_spinner',
 'components/omdb-movies/found-movies/movie-sort/_movie-sort',
-'components/omdb-movies/found-movies/movie-filter/_movie-filter';
+'components/omdb-movies/found-movies/movie-filter/_movie-filter',
+'components/movie-details/_movie-details',
+'components/movie-details/add-comment/_add-comment';
+
 
 // 6. Page-specific styles
 @import 'pages/_home';

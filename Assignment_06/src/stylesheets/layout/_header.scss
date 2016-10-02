@@ -6,7 +6,6 @@ $header-color-text: #fff;
 
 header {
   background-color: $header-color-bg;
-  color: $header-color-text;
   height: $header-height-fixed;
   left: 0;
   overflow: hidden;
@@ -18,7 +17,12 @@ header {
 }
 
 .header__title {
-  font-size: 2rem;
+  text-decoration: none;
+  color: $header-color-text;
+  font: {
+    size: 2rem;
+    weight: bold;
+  }
   line-height: 1.5;
   margin: 0;
   padding: 0 1rem;

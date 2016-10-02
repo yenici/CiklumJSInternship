@@ -1,9 +1,13 @@
 import controller from './omdb-movies.controller';
 import template from './omdb-movies.html';
 
-const MovieStoreComponent = {
+const OmdbMoviesComponent = {
+  bindings: {
+    foundMovies: '<',
+    favoriteMovies: '<',
+  },
   controller,
   template,
 };
 
-export default MovieStoreComponent;
+export default OmdbMoviesComponent;

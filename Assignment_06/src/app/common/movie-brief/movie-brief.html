@@ -1,0 +1,31 @@
+<div class="movie-brief">
+  <a class="movie-brief__poster" ui-sref="movie({ imdbID: $ctrl.movie.imdbID })" title="Click to view details">
+    <div class="movie-brief__poster-image"
+         style="background-image: url({{$ctrl.movie.Poster}}), url(images/noposter.png)">
+    </div>
+    <div class="movie-brief__title">
+      <div class="movie-brief__title-text">{{$ctrl.movie.Title}}</div>
+    </div>
+  </a>
+    <div class="movie-brief__info">
+      <div>
+        <a ng-show="$ctrl.inFavorites"
+           ng-click="$ctrl.onPinUnpin($ctrl.movie)"
+           ui-href=""
+           class="movie-brief__to-favorites"
+           title="Remove from favorites">
+          <i class="material-icons">clear</i>
+        </a>
+        <a ng-show="!$ctrl.inFavorites"
+           ng-click="$ctrl.onPinUnpin($ctrl.movie)"
+           ui-href=""
+           class="movie-brief__to-favorites"
+           title="Add to favorites">
+          <i class="material-icons">favorite</i>
+        </a>
+      </div>
+      <div>
+        {{$ctrl.movie.Type}}, {{$ctrl.movie.Year}}
+      </div>
+    </div>
+</div>

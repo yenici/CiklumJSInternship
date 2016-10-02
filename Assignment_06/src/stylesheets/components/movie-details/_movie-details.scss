@@ -1,0 +1,103 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the MovieBrief component.
+// -----------------------------------------------------------------------------
+$movie-details-poster-h: 415px;
+$movie-details-poster-w: 280px;
+$movie-details-comment-even-bg-col: #eee;
+
+$movie-details-nav-back-bg-col: #43ac6a;
+$movie-details-nav-back-col: #fff;
+
+.movie-details {
+
+  &__wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    min-width: $movie-details-poster-w;
+  }
+
+  &__poster-wrapper {
+    flex: 1 0;
+    text-align: center;
+  }
+
+  &__poster {
+    height: $movie-details-poster-h;
+    width: $movie-details-poster-w;
+    margin: 0 auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__info {
+    flex: 3 1;
+    padding: 1em;
+    min-width: $movie-details-poster-w;
+  }
+
+  &__info-brief {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      padding: 0 1em 0 0;
+    }
+  }
+
+  &__nav-back {
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 1em;
+
+    a {
+      background-color: $movie-details-nav-back-bg-col;
+      border-radius: 19px;
+      border: 0 solid $movie-details-nav-back-bg-col;
+      display: inline-block;
+      cursor: pointer;
+      color: $movie-details-nav-back-col;
+      opacity: 0.9;
+      font-size: 1em;
+      font-weight: bold;
+      padding: 0.5em 3em;
+      text-decoration:none;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__comments {
+    list-style: none;
+    padding: 0 2em ;
+
+    li {
+      padding: 0;
+    }
+  }
+
+  &__comment {
+    padding: 0.5em;
+
+    &--even {
+      background-color: $movie-details-comment-even-bg-col;
+    }
+
+    &-author {
+      font-weight: 600;
+    }
+    &-date {
+      font-weight: 200;
+      font-size: 0.75em;
+    }
+    &-text {
+      margin: 0.5em 2em;
+      font-size: 0.9em;
+    }
+  }
+}

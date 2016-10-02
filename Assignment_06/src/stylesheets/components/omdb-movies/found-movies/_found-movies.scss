@@ -1,9 +1,12 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the FoundMovies component.
 // -----------------------------------------------------------------------------
-$found-movies-border-color: #3db5d8;
-$found-movies-controls-bg-color: #5bc0de;
+$found-movies-border-color: #43ac6a;
+$found-movies-controls-bg-color: #43ac6a;
 $found-movies-paginator-bg-color: #43ac6a;
+$found-movies-new-search-bg-color: rgba(255, 64, 129, 0.85);
+$found-movies-new-search-active-color: rgba(255, 64, 129, 1);
+$found-movies-new-search-color: #fff;
 
 .found-movies {
   margin: 0.5em 0;
@@ -17,6 +20,28 @@ $found-movies-paginator-bg-color: #43ac6a;
     justify-content: space-between;
     align-items: center;
     align-content: space-around;
+  }
+
+  &__new-search {
+    font-size: 1em;
+    padding: 0.5em;
+
+    a {
+      background-color: $found-movies-new-search-bg-color;
+      border-radius: 19px;
+      border: 0 solid $found-movies-new-search-bg-color;
+      display: inline-block;
+      cursor: pointer;
+      color: $found-movies-new-search-color;
+      font-size: 1em;
+      font-weight: bold;
+      padding: 0.5em 1em;
+      text-decoration:none;
+
+      &:hover {
+        background-color: $found-movies-new-search-active-color;
+      }
+    }
   }
 
   &__results {

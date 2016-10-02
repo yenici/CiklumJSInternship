@@ -4,8 +4,7 @@ import template from './movie-details.html';
 const MovieDetailsComponent = {
   bindings: {
     movie: '<',
-    // favoriteMovies: '<',
-    // onUnpinMovie: '&',
+    previousState: '<',
   },
   controller,
   template,

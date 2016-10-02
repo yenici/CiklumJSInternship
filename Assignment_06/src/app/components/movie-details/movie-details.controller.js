@@ -1,9 +1,16 @@
+import angular from 'angular';
+
 class MovieDetailsController {
-  constructor() {
-    console.info('MovieDetails Constructor');
+  constructor(OmdbService, $state) {
+    this.omdbService = OmdbService;
+    this.$state = $state;
+    if (this.previousState.URL === null) {
+      this.previousState.Name = 'start';
+      this.previousState.Params = { '#': null };
+      this.previousState.URL = '#/';
+    }
   }
-  $onInit() {
-  }
+  // $onInit() {}
   $onChanges(changes) {
     function parseStars(rate) {
       if (!Number.isNaN(rate)) {
@@ -12,12 +19,37 @@ class MovieDetailsController {
       return 0;
     }
     if (changes.movie) {
-      this.movie = changes.movie.currentValue;
+      this.movie = Object.assign({}, changes.movie.currentValue);
+      this.movie.Comments = [...this.movie.Comments];
       this.movie.Stars = parseStars(this.movie.imdbRating);
     }
+    if (changes.previousState) {
+      if (changes.previousState.currentValue !== this.previousState) {
+        angular.copy(changes.previousState.currentValue, this.previousState);
+      }
+      if (this.previousState.URL === null) {
+        this.previousState.Name = 'start';
+        this.previousState.Params = { '#': null };
+        this.previousState.URL = '#/';
+      }
+    }
+  }
+  goBack() {
+    console.info('Back!');
+    console.info(this.previousState.Name);
+    console.info(this.previousState.Params);
+    console.info(this.previousState.URL);
+    this.$state.go(this.previousState.URL);
+    // this.$state.go(this.previousState.Name, this.previousState.Params);
+    // this.$state.go(this.previousState.Name, { imdbID: this.previousState.Params.imdbID });
+  }
+  addComment({ comment }) {
+    this.omdbService
+      .addMovieComment(this.movie.imdbID, comment.author, comment.text);
+    this.movie.Comments = this.omdbService.getMovieComments(this.movie.imdbID);
   }
 }
 
-// MovieDetailsController.$inject = ['OmdbService'];
+MovieDetailsController.$inject = ['OmdbService', '$state'];
 
 export default MovieDetailsController;
