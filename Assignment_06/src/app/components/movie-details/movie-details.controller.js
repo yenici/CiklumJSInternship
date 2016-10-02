@@ -35,13 +35,9 @@ class MovieDetailsController {
     }
   }
   goBack() {
-    console.info('Back!');
-    console.info(this.previousState.Name);
-    console.info(this.previousState.Params);
-    console.info(this.previousState.URL);
-    this.$state.go(this.previousState.URL);
-    // this.$state.go(this.previousState.Name, this.previousState.Params);
-    // this.$state.go(this.previousState.Name, { imdbID: this.previousState.Params.imdbID });
+    // TODO: It doesn't work!
+    // console.info(this.previousState.URL);
+    // this.$state.go(this.previousState.URL);
   }
   addComment({ comment }) {
     this.omdbService

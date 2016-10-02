@@ -46,7 +46,7 @@
 </div>
 
 <div class="movie-details__nav-back">
-  <a ng-click="$ctrl.goBack()">Back</a>
+  <a href={{$ctrl.previousState.URL}}>Back</a>
 </div>
 
 <hr />
@@ -72,5 +72,5 @@
 <addcomment on-add-comment="$ctrl.addComment($event)"></addcomment>
 
 <div class="movie-details__nav-back">
-  <a ng-click="$ctrl.goBack()">Back</a>
+  <a href={{$ctrl.previousState.URL}}>Back</a>
 </div>

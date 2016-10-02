@@ -33,7 +33,6 @@ const root = angular
         url: '/search/{query}',
         component: 'omdbmovies',
         resolve: {
-          // query: $stateParams => $stateParams.query.trim(),
           foundMovies: (OmdbService, $stateParams) =>
             OmdbService.searchMovie($stateParams.query.trim()),
           favoriteMovies: OmdbService => OmdbService.getFavorites(),
@@ -48,11 +47,11 @@ const root = angular
             OmdbService.getMovieDetails($stateParams.imdbID),
           previousState: [
             '$state',
-            $state => {console.info($state); return ({
+            $state => ({
               Name: $state.current.name,
               Params: $state.params,
               URL: $state.href($state.current.name, $state.params),
-            });},
+            }),
           ],
         },
       });
