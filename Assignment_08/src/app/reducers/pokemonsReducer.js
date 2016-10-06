@@ -23,6 +23,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
           });
       } else {
         // TODO: Catch an error
+        newState = state;
       }
       break;
     case FILTER_POKEMONS_BY_TYPE:

@@ -6,7 +6,7 @@ import { getFavorites, pinToFavorites, unpinFromFavorites, filterFavoritesByType
 
 class FavoritesContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchFavorites();
+    this.props.fetchFavorites();  // TODO: May be it's not a good idea to update favs each time
   }
   render() {
     return (

@@ -25,6 +25,7 @@ const favoritesReducer = (state = INITIAL_STATE, action) => {
           });
       } else {
         // TODO: Catch an error
+        newState = state;
       }
       break;
     case FILTER_FAVORITES_BY_TYPE:

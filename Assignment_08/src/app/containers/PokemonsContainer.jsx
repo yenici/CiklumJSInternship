@@ -7,8 +7,13 @@ import { getPokemonsChunk, filterPokemonsByType } from '../actions/pokemones';
 
 class PokemonsContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchFavorites();
-    this.props.fetchPokemonsChunk();
+    this.props.fetchFavorites(); // TODO: May be it's not a good idea to update favs each time
+    if (this.props.next === undefined) { // TODO: It looks not good...
+      // Fetch a new pokemon's chunk only when the component is mounting
+      // for the first time. Next time use an existing set of pokemons
+      // from the state.pokemonesState.fetchedPokes.
+      this.props.fetchPokemonsChunk();
+    }
   }
   render() {
     return (
@@ -19,7 +24,7 @@ class PokemonsContainer extends React.Component {
         filter={this.props.filter}
         onPinToFavorites={this.props.onPinToFavorites}
         onUnpinFromFavorites={this.props.onUnpinFromFavorites}
-        onLoadNext={this.props.onLoadNext}
+        onLoadNext={this.props.fetchPokemonsChunk}
         onSetFilter={this.props.onSetFilter}
       />
     );
@@ -39,7 +44,7 @@ const mapStateToProps = (state) => {
     .sort((a, b) => (a.id - b.id)); // Sort by Id
   return {
     pokemons,
-    next: state.next,
+    next: state.pokemonsState.next,
     types: ['all'].concat(Array.from(
       new Set(
         state.pokemonsState.fetchedPokes.reduce((types, pokemon) => types.concat(pokemon.types), [])
@@ -50,11 +55,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchFavorites: () => dispatch(getFavorites()),
-  fetchPokemonsChunk: () => dispatch(getPokemonsChunk()),
+  fetchPokemonsChunk: url => dispatch(getPokemonsChunk(url)),
   onPinToFavorites: pokemon => dispatch(pinToFavorites(pokemon)),
   onUnpinFromFavorites: pokemon => dispatch(unpinFromFavorites(pokemon)),
-  onLoadNext: url => dispatch(getPokemonsChunk(url)),
-  onSetFilter: (type) => dispatch(filterPokemonsByType(type)),
+  onSetFilter: type => dispatch(filterPokemonsByType(type)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonsContainer);
