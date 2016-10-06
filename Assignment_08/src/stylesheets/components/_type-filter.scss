@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the TypeFilter component.
+// -----------------------------------------------------------------------------
+
+.type-filter {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  width: 80%;
+  padding: 1em;
+  margin: 1em auto;
+  border: 1px solid $col-bg-medium-border;
+  border-radius: 5px;
+  background-color: $col-bg-medium;
+  color: $col-bg-medium-text;
+
+  &__button {
+    cursor: pointer;
+
+    &--active {
+      outline: {
+        color: $col-menu-bg-active;
+        style: solid;
+        width: 2px;
+      }
+    }
+  }
+}

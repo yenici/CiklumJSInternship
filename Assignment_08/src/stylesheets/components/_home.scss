@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the Home component.
+// -----------------------------------------------------------------------------
+
+.pokehome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+
+  &__logo {
+    width: 80%;
+  }
+}

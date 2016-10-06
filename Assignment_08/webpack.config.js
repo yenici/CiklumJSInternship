@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: __dirname.concat('/src/app/app.js'),
+    app: __dirname.concat('/src/app/index.js'),
   },
 
   output: {
@@ -26,14 +26,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel',
-      },
-      {
-        test: /\.json$/,
-        exclude: /node_modules/,
-        loader: 'json',
       },
       {
         test: /\.scss$/,
@@ -49,11 +44,7 @@ module.exports = {
         loader: 'file?name=../images/[name].[ext]',
       },
       {
-        test: /\.png$/,
-        loader: 'file?name=../images/[name].[ext]',
-      },
-      {
-        test: /\.jpg$/,
+        test: /\.svg$/,
         loader: 'file?name=../images/[name].[ext]',
       },
     ],

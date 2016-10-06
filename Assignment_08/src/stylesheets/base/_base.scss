@@ -15,6 +15,9 @@ body {
   color: $col-bg-light-text;
 }
 
+html {
+  padding-top: 4rem;
+}
 /**
  * Make all elements from the DOM inherit from the parent box-sizing
  * Since `*` has a specificity of 0, it does not override the `html` value

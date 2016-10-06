@@ -86,7 +86,10 @@ $pockemon-card-type-text-light: #fff;
       weight: bold;
     }
     margin: 12px 0;
-    text-overflow: ellipsis;
+    text: {
+      overflow: ellipsis;
+      transform: capitalize;
+    }
     white-space: nowrap;
   }
 
@@ -107,6 +110,7 @@ $pockemon-card-type-text-light: #fff;
     background: $pockemon-type-default;
     font-size: 16px;
     font-weight: 600;
+    text-transform: capitalize;
     color: $pockemon-card-type-text-dark;
 
     &--bug {
@@ -194,9 +198,11 @@ $pockemon-card-type-text-light: #fff;
     box-shadow: 0 1px 0 rgba(0,0,0,0.2);
     padding: 0 12px;
     color: $col-btn-text;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font: {
+      size: 14px;
+      weight: bold;
+      family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
     line-height: 30px;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     cursor: pointer;

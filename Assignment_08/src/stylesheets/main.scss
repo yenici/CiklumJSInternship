@@ -21,7 +21,13 @@
 'layout/_footer';
 
 // 5. components
-@import 'components/start/_pockemon-card';
+@import 'components/_app',
+'components/_spinner',
+'/components/_error-screen',
+'/components/_home',
+'components/_pokedex',
+'components/_pokemon-card',
+'components/_type-filter';
 
 // 6. Page-specific styles
 @import 'pages/_index';
