@@ -25,3 +25,11 @@ export const getPokemonsChunk = function getPokemonsChunk(url) {
       .catch(error => dispatch(getPokemonsChunkResponse({ message: error.toString() }, true)));
   };
 };
+
+export const FILTER_POKEMONS_BY_TYPE = 'FILTER_POKEMONS_BY_TYPE';
+export const filterPokemonsByType = filter => ({
+  type: FILTER_POKEMONS_BY_TYPE,
+  payload: {
+    filter,
+  },
+});

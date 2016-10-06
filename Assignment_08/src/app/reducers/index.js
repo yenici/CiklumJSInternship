@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 
-import favoritesReducer from './rootReducer';
+import globalReducer from './globalReducer';
+import pokemonsReducer from './pokemonsReducer';
+import favoritesReducer from './favoritesReducer';
 
 const Reducers = combineReducers({
-  favoritesReducer,
+  globalState: globalReducer,
+  pokemonsState: pokemonsReducer,
+  favoritesState: favoritesReducer,
 });
 
 export default Reducers;

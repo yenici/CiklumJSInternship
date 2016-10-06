@@ -4,8 +4,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App.jsx';
 
 import Home from './components/Home.jsx';
-import PokedexContainer from './containers/PokedexContainer';
-import FavoritesContainer from './containers/FavoritesContainer';
+import PokedexContainer from './containers/PokemonsContainer.jsx';
+import FavoritesContainer from './containers/FavoritesContainer.jsx';
 
 export default (
   <Router history={browserHistory}>
@@ -16,3 +16,4 @@ export default (
     </Route>
   </Router>
 );
+
