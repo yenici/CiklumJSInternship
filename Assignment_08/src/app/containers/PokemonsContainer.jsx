@@ -1,8 +1,27 @@
+import React from 'react';
 import { connect } from 'react-redux';
 
 import Pokedex from '../components/Pokedex.jsx';
 import { getFavorites, pinToFavorites, unpinFromFavorites } from '../actions/favorites';
 import { getPokemonsChunk } from '../actions/pokemones';
+
+class PokedexContainer extends React.Component {
+  componentDidMount() {
+    this.props.fetchFavorites();
+    this.props.fetchPokemonsChunk();
+  }
+  render() {
+    return (
+      <Pokedex
+        pokemons={this.props.pokemons}
+        onPinToFavorites={this.props.onPinToFavorites}
+        onUnpinFromFavorites={this.props.onUnpinFromFavorites}
+        next={this.props.next}
+        onLoadNext={this.props.onLoadNext}
+      />
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   const pokemons = state.fetchedPokes.map((poke) => {
@@ -11,7 +30,9 @@ const mapStateToProps = (state) => {
       return Object.assign(poke, { favorite: true });
     }
     return Object.assign(poke, { favorite: false });
-  }).sort((a, b) => (a.id - b.id)); // Sort by Id
+  })
+    .filter(pokemon => (state.filter === 'all' || pokemon.types.indexOf(state.filter) !== -1))
+    .sort((a, b) => (a.id - b.id)); // Sort by Id
   return {
     pokemons,
     next: state.next,
@@ -26,7 +47,4 @@ const mapDispatchToProps = dispatch => ({
   onLoadNext: url => dispatch(getPokemonsChunk(url)),
 });
 
-
-const PokedexContainer = connect(mapStateToProps, mapDispatchToProps)(Pokedex);
-
-export default PokedexContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(PokedexContainer);
