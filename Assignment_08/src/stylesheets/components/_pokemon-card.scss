@@ -207,7 +207,8 @@ $pockemon-card-type-text-light: #fff;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:active {
       background-image: linear-gradient($col-btn-bg-grad-end, $col-btn-bg-grad-middle 85%, $col-btn-bg-grad-start);
     }
 
@@ -220,7 +221,8 @@ $pockemon-card-type-text-light: #fff;
   }
 
   // Hide the card and show add/remove button
-  &:hover {
+  &:hover,
+  &:active {
     & .pockemon-card__action-wrapper {
       display: flex;
       flex-flow: column;
