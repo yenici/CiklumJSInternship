@@ -1,0 +1,44 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the PockmonBox component.
+// -----------------------------------------------------------------------------
+$col-btn-bg: #1275ff;
+$col-btn-bg-grad-start: #7dc5ee;
+$col-btn-bg-grad-middle: #008cdd;
+$col-btn-bg-grad-end: #30a2e4;
+$col-btn-text: #fff;
+
+.pokebox {
+  &__pokemons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em;
+    list-style: none;
+  }
+
+  &__load-next {
+    display: block;
+    margin: 16px auto;
+    padding: 4px 24px;
+    background: $col-btn-bg;
+    background-image: linear-gradient($col-btn-bg-grad-start, $col-btn-bg-grad-middle 85%, $col-btn-bg-grad-end);
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    color: $col-btn-text;
+    font: {
+      size: 14px;
+      weight: bold;
+      family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    line-height: 30px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    cursor: pointer;
+
+    &:hover {
+      background-image: linear-gradient($col-btn-bg-grad-end, $col-btn-bg-grad-middle 85%, $col-btn-bg-grad-start);
+    }
+  }
+}
+

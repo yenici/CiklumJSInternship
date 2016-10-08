@@ -1,0 +1,133 @@
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the FilterPanel component.
+// -----------------------------------------------------------------------------
+$filter-panel-bg: #f5f5f5;
+$filter-panel-border: #e3e3e3;
+$filter-panel-text: #263238;
+$filter-panel-active: #c62828;
+
+$filter-panel-type-text-dark: #263238;
+$filter-panel-type-text-light: #fff;
+
+$pockemon-type-bug: #729f3f;
+$pockemon-type-dark: #707070;
+$pockemon-type-dragon: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+$pockemon-type-electric: #eed535;
+$pockemon-type-fairy: #fdb9e9;
+$pockemon-type-fighting: #d56723;
+$pockemon-type-fire: #fd7d24;
+$pockemon-type-flying: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+$pockemon-type-ghost: #7b62a3;
+$pockemon-type-grass: #9bcc50;
+$pockemon-type-ground: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+$pockemon-type-ice: #51c4e7;
+$pockemon-type-normal: #a4acaf;
+$pockemon-type-poison: #b97fc9;
+$pockemon-type-psychic: #f366b9;
+$pockemon-type-rock: #a38c21;
+$pockemon-type-steel: #9eb7b8;
+$pockemon-type-water: #4592c4;
+$pockemon-type-default: #fff;
+
+.filter-panel {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 80%;
+  padding: 1em;
+  margin: 1em auto;
+  border: 1px solid $filter-panel-border;
+  border-radius: 5px;
+  background-color: $filter-panel-bg;
+  color: $filter-panel-text;
+
+  &__button {
+    cursor: pointer;
+
+    &--active {
+      outline: {
+        color: $filter-panel-active;
+        style: solid;
+        width: 2px;
+      }
+    }
+  }
+
+  &__type {
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px $filter-panel-border;
+    background: $pockemon-type-default;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: $filter-panel-type-text-dark;
+
+    &--bug {
+      background: $pockemon-type-bug;
+      color: $filter-panel-type-text-light;
+    }
+    &--dark {
+      background: $pockemon-type-dark;
+    }
+    &--dragon {
+      background: $pockemon-type-dragon;
+    }
+    &--electric {
+      background: $pockemon-type-electric;
+    }
+    &--fairy {
+      background: $pockemon-type-fairy;
+    }
+    &--fighting {
+      background: $pockemon-type-fighting;
+      color: $filter-panel-type-text-light;
+    }
+    &--fire {
+      background: $pockemon-type-fire;
+      color: $filter-panel-type-text-light;
+    }
+    &--flying {
+      background: $pockemon-type-flying;
+    }
+    &--ghost {
+      background: $pockemon-type-ghost;
+      color: $filter-panel-type-text-light;
+    }
+    &--grass {
+      background: $pockemon-type-grass;
+    }
+    &--ground {
+      background: $pockemon-type-ground;
+    }
+    &--ice {
+      background: $pockemon-type-ice;
+    }
+    &--normal {
+      background: $pockemon-type-normal;
+    }
+    &--poison {
+      background: $pockemon-type-poison;
+      color: $filter-panel-type-text-light;
+    }
+    &--psychic {
+      background: $pockemon-type-psychic;
+      color: $filter-panel-type-text-light;
+    }
+    &--rock {
+      background: $pockemon-type-rock;
+      color: $filter-panel-type-text-light;
+    }
+    &--steel {
+      background: $pockemon-type-steel;
+    }
+    &--water {
+      background: $pockemon-type-water;
+      color: $filter-panel-type-text-light;
+    }
+  }
+}

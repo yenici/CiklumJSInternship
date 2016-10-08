@@ -1,0 +1,237 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the PockemonCard component.
+// -----------------------------------------------------------------------------
+$pockemon-card-bg-col: #f5f5f5;
+
+$pockemon-card-fav-bg-col: #ebccd1;
+$pockemon-card-border-col: #e3e3e3;
+$pockemon-card-img-bg-col: #fff;
+
+$pockemon-card-id-text: #263238;
+
+$pockemon-card-type-text-dark: #263238;
+$pockemon-card-type-text-light: #fff;
+
+$pockemon-type-bug: #729f3f;
+$pockemon-type-dark: #707070;
+$pockemon-type-dragon: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+$pockemon-type-electric: #eed535;
+$pockemon-type-fairy: #fdb9e9;
+$pockemon-type-fighting: #d56723;
+$pockemon-type-fire: #fd7d24;
+$pockemon-type-flying: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+$pockemon-type-ghost: #7b62a3;
+$pockemon-type-grass: #9bcc50;
+$pockemon-type-ground: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+$pockemon-type-ice: #51c4e7;
+$pockemon-type-normal: #a4acaf;
+$pockemon-type-poison: #b97fc9;
+$pockemon-type-psychic: #f366b9;
+$pockemon-type-rock: #a38c21;
+$pockemon-type-steel: #9eb7b8;
+$pockemon-type-water: #4592c4;
+$pockemon-type-default: #fff;
+
+$col-btn-bg: #1275ff;
+$col-btn-bg-grad-start: #ef5350;
+$col-btn-bg-grad-end: #c62828;
+$col-btn-text: #fff;
+
+.pockemon-card {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 200px;
+  margin: 10px;
+  padding: 20px;
+  border: solid 1px $pockemon-card-border-col;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.14),0 3px 3px -2px rgba(0,0,0,.2),0 1px 8px 0 rgba(0,0,0,.12);
+  background-color: $pockemon-card-bg-col;
+
+  &__image {
+    height: 200px;
+    width: 200px;
+    border: 0;
+    border-radius: 5px;
+    background: $pockemon-card-img-bg-col no-repeat center;
+    background-size: contain;
+    position: relative;
+  }
+
+  &__image-fav {
+    display: none;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    color: $pockemon-card-fav-bg-col;
+    i {
+      font-size: 36px;
+    }
+  }
+
+  &__id {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: $pockemon-card-id-text;
+    font: {
+      size: 12px;
+      weight: bold;
+    }
+  }
+
+  &--favorite {
+    background-color: $pockemon-card-fav-bg-col;
+
+    // Display a heart for favorite Pockemon
+    & .pockemon-card__image-fav {
+      display: block;
+    }
+
+    // Hide 'Add to fav' button for favorite Pockemon
+    & .pockemon-card__btn--add {
+      display: none;
+    }
+
+    // Display 'Remove from fav' button for favorite Pockemon
+    & .pockemon-card__btn--rm {
+      display: block;
+    }
+  }
+
+  &__name {
+    max-width: 200px;
+    overflow: hidden;
+    font: {
+      size: 24px;
+      weight: bold;
+    }
+    margin: 12px 0;
+    text: {
+      overflow: ellipsis;
+      transform: capitalize;
+    }
+    white-space: nowrap;
+  }
+
+  &__abilities {
+    align-self: flex-start;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+  }
+
+  &__type {
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px $pockemon-card-border-col;
+    background: $pockemon-type-default;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: $pockemon-card-type-text-dark;
+
+    &--bug {
+      background: $pockemon-type-bug;
+      color: $pockemon-card-type-text-light;
+    }
+    &--dark {
+      background: $pockemon-type-dark;
+    }
+    &--dragon {
+      background: $pockemon-type-dragon;
+    }
+    &--electric {
+      background: $pockemon-type-electric;
+    }
+    &--fairy {
+      background: $pockemon-type-fairy;
+    }
+    &--fighting {
+      background: $pockemon-type-fighting;
+      color: $pockemon-card-type-text-light;
+    }
+    &--fire {
+      background: $pockemon-type-fire;
+      color: $pockemon-card-type-text-light;
+    }
+    &--flying {
+      background: $pockemon-type-flying;
+    }
+    &--ghost {
+      background: $pockemon-type-ghost;
+      color: $pockemon-card-type-text-light;
+    }
+    &--grass {
+      background: $pockemon-type-grass;
+    }
+    &--ground {
+      background: $pockemon-type-ground;
+    }
+    &--ice {
+      background: $pockemon-type-ice;
+    }
+    &--normal {
+      background: $pockemon-type-normal;
+    }
+    &--poison {
+      background: $pockemon-type-poison;
+      color: $pockemon-card-type-text-light;
+    }
+    &--psychic {
+      background: $pockemon-type-psychic;
+      color: $pockemon-card-type-text-light;
+    }
+    &--rock {
+      background: $pockemon-type-rock;
+      color: $pockemon-card-type-text-light;
+    }
+    &--steel {
+      background: $pockemon-type-steel;
+    }
+    &--water {
+      background: $pockemon-type-water;
+      color: $pockemon-card-type-text-light;
+    }
+  }
+
+  &__btn {
+    background: {
+      color: $col-btn-bg-grad-end;
+      image: linear-gradient($col-btn-bg-grad-start 50%, $col-btn-bg-grad-end);
+    }
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    margin-top: 5px;
+    padding: 5px 6px;
+    color: $col-btn-text;
+    //font: {
+    //  size: 14px;
+    //  weight: bold;
+    //  family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    //}
+    //line-height: 24px;
+    //text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      background-image: linear-gradient($col-btn-bg-grad-end 50%, $col-btn-bg-grad-start);
+    }
+
+    &--add {
+      display: block;
+    }
+    &--rm {
+      display: none;
+    }
+  }
+
+}
