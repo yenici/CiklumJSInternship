@@ -212,13 +212,6 @@ $col-btn-text: #fff;
     margin-top: 5px;
     padding: 5px 6px;
     color: $col-btn-text;
-    //font: {
-    //  size: 14px;
-    //  weight: bold;
-    //  family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    //}
-    //line-height: 24px;
-    //text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     cursor: pointer;
 
     &:hover,
@@ -232,6 +225,15 @@ $col-btn-text: #fff;
     &--rm {
       display: none;
     }
+  }
+
+  &__controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 6px;
+    border-top: solid 1px $col-btn-bg-grad-end;
   }
 
 }

@@ -1,7 +1,5 @@
 A simple interface for [The RESTful Pokémon Data API](http://pokeapi.co/) powered by Angular2.
 
-Link to working prototype [http://yenici.github.io/CiklumJSInternship/Assignment_09/](http://yenici.github.io/CiklumJSInternship/Assignment_09/).
-
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.16.
 

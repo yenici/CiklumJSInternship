@@ -1,10 +1,10 @@
-import { Assignment09Page } from './app.po';
+import { Assignment09aPage } from './app.po';
 
-describe('assignment-09 App', function() {
-  let page: Assignment09Page;
+describe('assignment-09a App', function() {
+  let page: Assignment09aPage;
 
   beforeEach(() => {
-    page = new Assignment09Page();
+    page = new Assignment09aPage();
   });
 
   it('should display message saying app works', () => {

@@ -1,0 +1,83 @@
+<div class="poke-detail">
+  <div class="poke-detail__main">
+    <div>
+      <img src={{pokemon.sprites.front_default}}
+           alt="Front view default"
+           title="Front view default"
+           width="240px"
+      />
+    </div>
+    <div>
+      <h1>{{pokemon.name}}</h1>
+      <h2>Height: {{pokemon.height / 10}} m</h2>
+      <h2>Weight: {{pokemon.weight / 10}} kg</h2>
+      <div class="poke-detail__types">
+        <h2>Types:</h2>
+        <div *ngFor="let item of pokemon.types"
+             [ngClass]="'poke-detail__type '.concat('poke-detail__type--'.concat(item.type.name))"
+        >
+          {{item.type.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="poke-detail__images">
+    <li *ngIf="pokemon.sprites.front_default !== null">
+      <img src={{pokemon.sprites.front_default}}
+           alt="Front view default"
+           title="Front view default"
+      />
+    </li>
+    <li *ngIf="pokemon.sprites.back_default !== null">
+      <img src={{pokemon.sprites.back_default}}
+           alt="Back view default"
+           title="Back view default"
+      />
+    </li>
+    <li *ngIf="pokemon.sprites.front_female !== null">
+      <img src={{pokemon.sprites.front_female}}
+           alt="Front view, female"
+           title="Front view, female"
+      />
+    </li>
+    <li *ngIf="pokemon.sprites.back_female !== null">
+      <img src={{pokemon.sprites.back_female}}
+           alt="Back view, female"
+           title="Back view, female"
+      />
+    </li>
+    <li *ngIf="pokemon.sprites.front_shiny !== null">
+      <img src={{pokemon.sprites.front_shiny}}
+           alt="Front view, shiny"
+           title="Front view, shiny"
+      />
+    </li>
+    <li *ngIf="pokemon.sprites.back_shiny !== null">
+      <img src={{pokemon.sprites.back_shiny}}
+           alt="Back view, shiny"
+           title="Back view, shiny"
+      />
+    </li>
+    <li *ngIf="pokemon.sprites.front_shiny_female !== null">
+      <img src={{pokemon.sprites.front_shiny_female}}
+           alt="Front view, shiny, female"
+           title="Front view, shiny, female"
+      />
+    </li>
+    <li *ngIf="pokemon.sprites.back_shiny_female !== null">
+      <img src={{pokemon.sprites.back_shiny_female}}
+           alt="Back view, shiny, female"
+           title="Back view, shiny, female"
+      />
+    </li>
+  </ul>
+
+  <ul class="poke-detail__stats">
+    <li *ngFor="let item of pokemon.stats">
+      <h3>{{ item.stat.name.replace('-', ' ').toUpperCase() }}</h3>
+      <rating [rate]="item.base_stat" [scale]="200" class="poke-detail__stars"></rating>
+    </li>
+  </ul>
+
+  <button class="poke-detail__btn" (click)="goBack()">Back</button>
+</div>

@@ -3,6 +3,7 @@
           class="filter-panel__button filter-panel__type"
           [class.filter-panel__button--active]="type === filter"
           [ngClass]="'filter-panel__type--'.concat(type)"
+          (click)="onFilterClick(type)"
   >
     {{type}}
   </button>

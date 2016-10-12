@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the FavoritesBox component.
+// -----------------------------------------------------------------------------
+.pokebox {
+  &__pokemons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em;
+    list-style: none;
+  }
+}
+

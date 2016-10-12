@@ -1,0 +1,58 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the App component.
+// -----------------------------------------------------------------------------
+$col-menu-bg: #ef5350;
+$col-menu-bg-active: #c62828;
+$col-menu-text: #fff;
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  padding: 0 2rem;
+  background-color: $col-menu-bg;
+  color: $col-menu-text;
+}
+
+.header {
+  &__logo {
+    padding: 0;
+    margin: 0;
+    flex: 1 0;
+
+    a {
+      color: $col-menu-text;
+      font-size: 2rem;
+      text-decoration: none;
+    }
+  }
+
+  &__nav-panel {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  &__menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__menu-link {
+    padding: 1rem;
+    color: $col-menu-text;
+    font-size: 1rem;
+    text-decoration: none;
+
+    &--active {
+      background-color: $col-menu-bg-active;
+    }
+  }
+}

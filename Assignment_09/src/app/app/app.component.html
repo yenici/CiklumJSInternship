@@ -1,0 +1,27 @@
+<div>
+  <header>
+    <base href="/">
+    <div class="header__logo">
+      <a routerLink="/">PokéAPI</a>
+    </div>
+    <nav class="header__nav-panel">
+      <ul class="header__menu">
+        <li>
+          <a routerLink="/pokemons" routerLinkActive="header__menu-link--active" class="header__menu-link">
+            Pokémons
+          </a>
+        </li>
+        <li>
+          <a routerLink="/favorites" routerLinkActive="header__menu-link--active" class="header__menu-link">
+            Favorites
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <spinner></spinner>
+  <router-outlet></router-outlet>
+</div>
+
+<!--<pokemon-box></pokemon-box>-->
+<!--<pokemon-details [pokemonUrl]="'http://pokeapi.co/api/v2/pokemon/11/'"></pokemon-details>-->

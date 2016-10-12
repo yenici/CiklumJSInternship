@@ -1,0 +1,17 @@
+<section>
+  <div class="pokebox">
+    <filter-panel [types]="types" [filter]="filter" (onSetFilter)="onSetFilter($event)"></filter-panel>
+    <ul class="pokebox__pokemons">
+      <li *ngFor="let pokemon of pokemonsInView" >
+        <pokemon-card [pokemon]="pokemon"
+                      [state]="state"
+                      (onFavorites)="onFavorites($event)"
+        >
+        </pokemon-card>
+      </li>
+    </ul>
+    <button *ngIf="hasMore" (click)="getNextPokemons()" class="pokebox__load-next">
+      Load more...
+    </button>
+  </div>
+</section>
