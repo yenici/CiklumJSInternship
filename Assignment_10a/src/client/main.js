@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
+require('./main.scss');
+
+document.addEventListener('DOMContentLoaded', () => {
   // Login form elements
   const loginPage = document.getElementsByClassName('chat-login')[0];
   const loginField = document.getElementById('loginField');
@@ -38,6 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
           mainPage.style.display = 'block';
           userName = message.user;
           userConnected = true;
+          for (let i = 0; i < message.history.length; i += 1) {
+            addChatMessage(message.history[i]);
+          }
+          // for (msg of message.history) {
+          //   addChatMessage(msg);
+          // }
           addServiceMessage(message);
         } else {
           loginPage.style.display = 'none';

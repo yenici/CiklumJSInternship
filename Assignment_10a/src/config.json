@@ -1,4 +1,5 @@
 {
   "port": 3000,
-  "maxConnection": 5
+  "maxConnection": 5,
+  "messages": "./messages.json"
 }
