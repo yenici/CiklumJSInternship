@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the AddComment component.
+// -----------------------------------------------------------------------------
+$add-comment-border-col: #43a66a;
+$add-comment-active-label-col: #43a66a;
+$add-comment-bg-col: #eee;
+$movie-brief-error-col: #ff4081;
+
+.add-comment {
+  margin: 1em auto;
+  padding: 1em;
+  border: 1px solid $add-comment-border-col;
+  border-radius: 5px;
+  max-width: 768px;
+  background-color: $add-comment-bg-col;
+  font-size: 1em;
+
+
+  &__fieldset {
+    display: flex;
+    align-items: center;
+    margin: 1em;
+
+    &--submit {
+      text-align: center;
+    }
+  }
+
+  &__error {
+    text-align: center;
+    color: $movie-brief-error-col;
+  }
+
+  label {
+    order: 1;
+    width: 5em;
+    padding-right: 1em;
+    font-weight: bold;
+  }
+
+  input, textarea {
+    order: 2;
+    flex: 1 1 auto;
+  }
+
+  input:focus ~ label, textarea:focus ~ label {
+    color: $add-comment-active-label-col;
+  }
+}

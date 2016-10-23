@@ -1,0 +1,46 @@
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the Search component.
+// -----------------------------------------------------------------------------
+//$omdb-movies-search-bg-color: #43a66a;
+$omdb-movies-search-bg-color: #fff;
+$omdb-movies-err-color: #f00;
+
+.omdb-movies-login {
+  margin: 0.5em auto;
+  padding: 0.5em 0;
+  background-color: $omdb-movies-search-bg-color;
+  max-width: 250px;
+
+  &__form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+    //width: 80%;
+  }
+
+  &__input {
+    //flex: 1 1 10em;
+    padding: 0.5em 1em;
+    input {
+      width: 100%;
+    }
+  }
+
+  &__error {
+    //flex: 1 1 10em;
+    padding: 0.5em 1em;
+    color: $omdb-movies-err-color;
+    text-align: center;
+    font-size: 0.75em;
+    width: 100%
+  }
+
+  &__submit {
+    //flex: 0;
+    padding: 0 1em;
+  }
+}

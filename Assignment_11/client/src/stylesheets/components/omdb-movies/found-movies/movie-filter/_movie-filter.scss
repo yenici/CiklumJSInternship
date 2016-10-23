@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the MovieFilter component.
+// -----------------------------------------------------------------------------
+
+.movie-filter {
+  font-size: 1em;
+  padding: 0.5em;
+
+  &__control {
+    margin: 0 0.1em;
+  }
+}

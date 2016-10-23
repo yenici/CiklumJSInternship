@@ -1,0 +1,7 @@
+{
+  "port": 8080,
+  "secret": "your secret phrase",
+  "mongoConnectionString": "mongodb://<name>:<password>@<db>.mlab.com:61076/omdbmovie",
+  "omdbApiUrl": "http://www.omdbapi.com",
+  "omdbRespMoviesOnPage": 10
+}

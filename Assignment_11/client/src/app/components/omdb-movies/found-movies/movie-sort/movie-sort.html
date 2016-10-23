@@ -1,0 +1,39 @@
+<div class="movie-sort">
+  <b>Order by:</b>
+  <button
+    ng-click="$ctrl.onOrderClick('Title')"
+    title="Click to order the movies by the titles">
+    <span
+      class="movie-sort__order-name"
+      ng-class="{
+        'movie-sort__order-name--ascending': $ctrl.orderExpr === 'Title' && !$ctrl.orderDesc,
+        'movie-sort__order-name--descending': $ctrl.orderExpr === 'Title' && $ctrl.orderDesc
+      }">
+      Title
+    </span>
+  </button>
+  <button
+    ng-click="$ctrl.onOrderClick('Type')"
+    title="Click to order the movies by the types">
+    <span
+      class="movie-sort__order-name"
+      ng-class="{
+        'movie-sort__order-name--ascending': $ctrl.orderExpr === 'Type' && !$ctrl.orderDesc,
+        'movie-sort__order-name--descending': $ctrl.orderExpr === 'Type' && $ctrl.orderDesc
+      }">
+      Type
+    </span>
+  </button>
+  <button
+    ng-click="$ctrl.onOrderClick('Year')"
+    title="Click to order the movies by the production years">
+    <span
+      class="movie-sort__order-name"
+      ng-class="{
+        'movie-sort__order-name--ascending': $ctrl.orderExpr === 'Year' && !$ctrl.orderDesc,
+        'movie-sort__order-name--descending': $ctrl.orderExpr === 'Year' && $ctrl.orderDesc
+      }">
+      Year
+    </span>
+  </button>
+</div>

@@ -1,0 +1,51 @@
+{
+  "name": "ngomdbviewer",
+  "version": "0.3.0",
+  "description": "OMDb Viewer with AngularJS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yenici/CiklumJSInternship.git"
+  },
+  "author": "yenici",
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "Open IMDb",
+    "AngularJS",
+    "webpack",
+    "AJAX"
+  ],
+  "main": "src/app/app.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --config=webpack.config.js --define process.env.NODE_ENV='\"production\"' --colors --progress",
+    "server": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors",
+    "start": "npm run server"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^1.0.0-beta.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.9.3",
+    "postcss-loader": "^0.13.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  }
+}

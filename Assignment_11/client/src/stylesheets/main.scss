@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import 'abstracts/_variables',
+'abstracts/_functions',
+'abstracts/_mixins';
+
+// 2. Vendors
+@import 'vendor/_normalize';
+
+// 3. Base stuff
+@import 'base/_base',
+'base/_fonts',
+'base/_typography',
+'base/_helpers',
+'base/_sprites';
+
+// 4. Layout-related sections
+@import 'layout/_header',
+'layout/_info',
+'layout/_main',
+'layout/_footer';
+
+// 5. components
+@import
+'components/common/movie-brief/_movie-brief',
+'components/common/favorites/_favorites',
+'components/common/spinner/_spinner',
+'components/start/search/_search',
+'components/omdb-movies/_omdb-movies',
+'components/omdb-movies/found-movies/_found-movies',
+'components/omdb-movies/found-movies/movie-sort/_movie-sort',
+'components/omdb-movies/found-movies/movie-filter/_movie-filter',
+'components/movie-details/_movie-details',
+'components/movie-details/add-comment/_add-comment',
+'components/login/_login';
+
+
+// 6. Page-specific styles
+@import 'pages/_home';
+
+// 7. Themes
+@import 'themes/_default';

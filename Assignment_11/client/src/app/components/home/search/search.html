@@ -1,0 +1,21 @@
+<div class="omdb-movies-search">
+  <form class="omdb-movies-search__form"
+        novalidate
+        ng-submit="$ctrl.onSubmit();">
+    <div class="omdb-movies-search__query">
+      <input
+        ng-model="$ctrl.query"
+        ng-disabled="$ctrl.searchInProgress"
+        type="text"
+        placeholder="Enter a fragment of a title to search"
+        id="q" />
+    </div>
+    <div class="omdb-movies-search__submit">
+      <button
+        ng-disabled="$ctrl.searchInProgress"
+        type="submit">
+        Search
+      </button>
+    </div>
+  </form>
+</div>

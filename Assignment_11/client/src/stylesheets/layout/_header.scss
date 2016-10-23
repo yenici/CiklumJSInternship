@@ -1,0 +1,69 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+$header-color-bg: #3db5d8;
+$header-color-text: #fff;
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $header-color-bg;
+  height: $header-height-fixed;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  // Using z-index to prervent overlapping
+  z-index: 1000;
+}
+
+.header__title {
+  flex: {
+    grow: 1;
+    shrink: 1;
+  }
+  color: $header-color-text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  a {
+    text-decoration: none;
+    color: $header-color-text;
+    font: {
+      size: 2rem;
+      weight: bold;
+    }
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 1rem;
+    overflow: hidden;
+    white-space: nowrap
+  }
+}
+
+.header_auth {
+  flex: {
+    grow: 0;
+    shrink: 0;
+  }
+  padding: 0 1.5rem 0 0.5rem;
+
+  span {
+    color: $header-color-text;
+    font: {
+      style: italic;
+      weight: bold;
+      size: 1rem;
+    }
+    padding: 0 0.5rem;
+  }
+
+  a {
+    color: $header-color-text;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+}

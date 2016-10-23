@@ -1,0 +1,76 @@
+<div class="movie-details__wrapper">
+  <div class="movie-details__poster-wrapper">
+    <div class="movie-details__poster"
+         style="background-image: url({{$ctrl.movie.Poster}}), url(images/noposter.png)">
+    </div>
+  </div>
+  <div class="movie-details__info">
+    <h2>{{$ctrl.movie.Title}}</h2>
+    <div>
+      <p>
+        <i ng-show="$ctrl.movie.Stars < 0.5" class="material-icons">star_border</i>
+        <i ng-show="$ctrl.movie.Stars === 0.5"class="material-icons">star_half</i>
+        <i ng-show="$ctrl.movie.Stars >= 1" class="material-icons">star</i>
+        <i ng-show="$ctrl.movie.Stars < 1.5" class="material-icons">star_border</i>
+        <i ng-show="$ctrl.movie.Stars === 1.5"class="material-icons">star_half</i>
+        <i ng-show="$ctrl.movie.Stars >= 2" class="material-icons">star</i>
+        <i ng-show="$ctrl.movie.Stars < 2.5" class="material-icons">star_border</i>
+        <i ng-show="$ctrl.movie.Stars === 2.5"class="material-icons">star_half</i>
+        <i ng-show="$ctrl.movie.Stars >= 3" class="material-icons">star</i>
+        <i ng-show="$ctrl.movie.Stars < 3.5" class="material-icons">star_border</i>
+        <i ng-show="$ctrl.movie.Stars === 3.5"class="material-icons">star_half</i>
+        <i ng-show="$ctrl.movie.Stars >= 4" class="material-icons">star</i>
+        <i ng-show="$ctrl.movie.Stars < 4.5" class="material-icons">star_border</i>
+        <i ng-show="$ctrl.movie.Stars === 4.5"class="material-icons">star_half</i>
+        <i ng-show="$ctrl.movie.Stars === 5" class="material-icons">star</i>
+        ({{$ctrl.movie.imdbRating}} / {{$ctrl.movie.imdbVotes}} votes)
+      </p>
+    </div>
+    <div>
+      <ul class="movie-details__info-brief">
+        <li><b>Year:</b> {{$ctrl.movie.Year}}</li>
+        <li><b>Country:</b> {{$ctrl.movie.Country}}</li>
+        <li><b>Rated:</b> {{$ctrl.movie.Rated}}</li>
+        <li><b>Runtime:</b> {{$ctrl.movie.Runtime}}</li>
+        <li><b>Language:</b> {{$ctrl.movie.Language}}</li>
+        <li><b>Genre:</b> {{$ctrl.movie.Genre}}</li>
+      </ul>
+      <p>{{$ctrl.movie.Plot}}</p>
+      <p><b>Production: </b>{{$ctrl.movie.Production}}</p>
+      <p><b>Director: </b>{{$ctrl.movie.Director}}</p>
+      <p><b>Writer: </b>{{$ctrl.movie.Writer}}</p>
+      <p><b>Actors: </b>{{$ctrl.movie.Actors}}</p>
+      <p><b>Awards: </b>{{$ctrl.movie.Awards}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="movie-details__nav-back">
+  <a href={{$ctrl.previousState.URL}}>Back</a>
+</div>
+
+<hr />
+<div>
+  <h2>Comments:</h2>
+  <ul
+    ng-hide="$ctrl.movie.Comments.length === 0"
+    class="movie-details__comments">
+    <li ng-repeat="item in $ctrl.movie.Comments">
+      <div
+        ng-class="{ 'movie-details__comment--even': $even }"
+        class="movie-details__comment">
+        <div>
+          <span class="movie-details__comment-author">{{item.author}}</span>,
+          <span class="movie-details__comment-date">{{item.timestamp | date: 'dd.MM.yyyy HH:mm'}}</span>
+        </div>
+        <p class="movie-details__comment-text">{{item.comment}}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<addcomment on-add-comment="$ctrl.addComment($event)"></addcomment>
+
+<div class="movie-details__nav-back">
+  <a href={{$ctrl.previousState.URL}}>Back</a>
+</div>

@@ -1,0 +1,44 @@
+<div class="found-movies">
+  <div class="found-movies__controls">
+    <div class="found-movies__new-search">
+      <a ui-sref="home">New search</a>
+    </div>
+
+    <moviesort order-expr="$ctrl.orderExpr"
+               order-desc="$ctrl.orderDesc"
+               on-order-set="$ctrl.setOrder($event)">
+    </moviesort>
+
+    <moviefilter filter-types="$ctrl.filterTypes"
+                 filter-expr="$ctrl.filterExpr"
+                 on-filter-set="$ctrl.setFilter($event)">
+    </moviefilter>
+
+  </div>
+  <div class="found-movies__results">
+    <moviebrief ng-repeat="item in $ctrl.movies | pageFilter: $ctrl.paginator.currentPage"
+                movie="item"
+                on-pin-unpin-movie="$ctrl.pinMovie($event)">
+    </moviebrief>
+  </div>
+  <div class="found-movies__controls found-movies__paginator">
+    <div class="found-movies__new-search">
+      <a ui-sref="home">New search</a>
+    </div>
+    <div ng-hide="$ctrl.paginator.totalPages === 0">
+      <button ng-disabled="$ctrl.paginator.currentPage <= 1"
+              ng-click="$ctrl.paginator.currentPage = $ctrl.paginator.currentPage - 1" class="">
+        <i class="material-icons">chevron_left</i>
+      </button>
+      <span style="margin: 0 1em;">Page {{$ctrl.paginator.currentPage}} of {{$ctrl.paginator.totalPages}}</span>
+      <button ng-disabled="$ctrl.paginator.currentPage >= $ctrl.paginator.totalPages"
+              ng-click="$ctrl.paginator.currentPage = $ctrl.paginator.currentPage + 1"
+              class="">
+        <i class="material-icons">chevron_right</i>
+      </button>
+    </div>
+    <div>
+      <b>Total items found:</b> {{$ctrl.movies.length}}
+    </div>
+  </div>
+</div>

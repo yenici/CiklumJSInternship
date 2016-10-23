@@ -1,0 +1,29 @@
+<div class="omdb-movies-login">
+  <form  class="omdb-movies-login__form"
+         novalidate
+         ng-submit="$ctrl.onSubmit()">
+    <div class="omdb-movies-login__input">
+      <label>Username:</label>
+      <input
+        ng-model="$ctrl.username"
+        ng-minlength="4" ng-maxlength="10"
+        type="text"
+        placeholder="From 4 to 10 symbols"
+        required />
+    </div>
+    <div class="omdb-movies-login__input">
+      <label>Password:</label>
+      <input
+        ng-model="$ctrl.password"
+        ng-minlength="4" ng-maxlength="10"
+        type="password"
+        placeholder="From 4 to 10 symbols" />
+    </div>
+    <div  class="omdb-movies-login__error" ng-show="$ctrl.errorMsg">
+      {{$ctrl.errorMsg}}
+    </div>
+    <div class="omdb-movies-login__submit">
+      <button type="submit">Login</button>
+    </div>
+  </form>
+</div>

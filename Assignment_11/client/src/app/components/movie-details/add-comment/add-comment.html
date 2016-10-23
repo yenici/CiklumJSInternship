@@ -1,0 +1,35 @@
+<!--https://www.sitepoint.com/make-forms-fun-with-flexbox/-->
+<div class="add-comment" ng-show="$ctrl.$rootScope.token">
+  <form name="fcomment" novalidate>
+    <!--<div class="add-comment__fieldset">-->
+      <!--<input id="add-comment__author" name="author" type="text"-->
+             <!--placeholder="Enter your name (minimum 5 symbols)"-->
+             <!--ng-model="$ctrl.comment.author"-->
+             <!--ng-minlength="5"-->
+             <!--ng-required="true" />-->
+      <!--<label for="add-comment__author">Name:</label>-->
+    <!--</div>-->
+    <!--<div ng-show="fcomment.$submitted || fcomment.author.$touched" class="add-comment__error">-->
+      <!--<div ng-show="fcomment.author.$error.required"><small>Name is requred.</small></div>-->
+      <!--<div ng-show="fcomment.author.$error.minlength"><small>Name is too small (at least 5 symbols).</small></div>-->
+    <!--</div>-->
+    <div class="add-comment__fieldset">
+      <textarea name="text" id="add-comment__text" cols="30" rows="5"
+                placeholder="Your comment (minimum 3 symbols)"
+                ng-model="$ctrl.comment"
+                ng-minlength="3"
+                ng-required="true">
+      </textarea>
+      <label for="add-comment__text">Comment:</label>
+    </div>
+    <div ng-show="fcomment.$submitted || fcomment.text.$touched" class="add-comment__error">
+      <div ng-show="fcomment.text.$error.required"><small>Comment is requred.</small></div>
+      <div ng-show="fcomment.text.$error.minlength"><small>Comment is too small (at least 5 symbols).</small></div>
+    </div>
+    <div class="add-comment__fieldset--submit">
+      <input type="submit" name="addcomment" value="Comment"
+             ng-disabled="fcomment.$invalid"
+             ng-click="$ctrl.submitAddComment($ctrl.comment)">
+    </div>
+  </form>
+</div>

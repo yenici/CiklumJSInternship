@@ -1,0 +1,15 @@
+// --------------------------------------------------------------------------------
+// This file contains all styles related to the Main block of the site/application.
+// --------------------------------------------------------------------------------
+$omdb-movies-bg-color: #fff;
+
+main {
+  margin: $header-height-fixed 0 $footer-height-fixed 0;
+  padding: 1em;
+}
+
+.main-wrapper {
+  background-color: $omdb-movies-bg-color;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.14),0 3px 3px -2px rgba(0,0,0,.2),0 1px 8px 0 rgba(0,0,0,.12);
+  padding: 0.5em;
+}
