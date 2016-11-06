@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import 'abstracts/_variables',
+'abstracts/_functions',
+'abstracts/_mixins';
+
+// 2. Vendors
+@import 'vendor/_normalize',
+'vendor/_react-select';
+
+// 3. Base stuff
+@import 'base/_base',
+'base/_fonts',
+'base/_typography',
+'base/_helpers',
+'base/_sprites';
+
+// 4. Layout-related sections
+@import 'layout/_header',
+'layout/_main',
+'layout/_footer';
+
+// 5. components
+@import 'components/_app',
+'components/_button',
+'components/_modal-window',
+'components/_spinner',
+'components/_error-screen',
+'components/_space-planner',
+'components/_floor-plan',
+'components/_floor-panel',
+'components/_floor-plan-title',
+'components/_seat-info',
+'components/_employee-info';
+
+// 6. Page-specific styles
+@import 'pages/_index';
+
+// 7. Themes
+@import 'themes/_default';

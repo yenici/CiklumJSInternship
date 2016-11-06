@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the App component.
+// -----------------------------------------------------------------------------
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 1rem;
+  background-color: $color_violet;
+  color: $color_white;
+}
+
+.header {
+  &__logo {
+    padding: 0.5rem 1rem;
+    margin: 0;
+    vertical-align: middle;
+
+    a {
+      color: $color_orange;
+      font-size: 2rem;
+      text-decoration: none;
+
+      img {
+        vertical-align: text-top;
+      }
+    }
+  }
+}

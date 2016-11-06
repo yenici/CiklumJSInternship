@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the SpacePlannerContainer.
+// -----------------------------------------------------------------------------
+
+.space-planner-container {
+  background: $color_white;
+  min-width: 1024px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}

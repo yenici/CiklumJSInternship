@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the FloorPlan component.
+// -----------------------------------------------------------------------------
+
+.floor-plan {
+  height: 550px;
+  border: solid 1px #4e4e4e;
+  border-radius: 5px;
+  padding: 0;
+  margin: 1rem 0.5rem;
+  overflow: hidden;
+  flex: 1 75%;
+}

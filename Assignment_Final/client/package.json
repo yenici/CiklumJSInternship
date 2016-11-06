@@ -1,0 +1,58 @@
+{
+  "name": "ciklumspace",
+  "version": "0.1.0",
+  "description": "Ciklum Space",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yenici/CiklumJSInternship.git"
+  },
+  "author": "yenici",
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "ReactJS",
+    "redux"
+  ],
+  "main": "src/app/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --config=webpack.config.js --define process.env.NODE_ENV='\"production\"' --colors --progress --optimize-minimize",
+    "server": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors",
+    "start": "npm run server"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-select": "^1.0.0-rc.2",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "svg.draggable.js": "^2.2.1",
+    "svg.js": "^2.3.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.9.3",
+    "postcss-loader": "^0.13.0",
+    "raw-loader": "^0.5.1",
+    "redux-logger": "^2.6.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  }
+}

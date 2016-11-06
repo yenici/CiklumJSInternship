@@ -1,0 +1,76 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the Spinner component.
+// Spinner by Paweł Targoński (http://codepen.io/paweltar)
+// Link: http://codepen.io/paweltar/pen/RRNWoo
+// -----------------------------------------------------------------------------
+//$background-color: rgba(0, 0, 0, 0.85);
+$background-color: rgba(0, 0, 0, 0);
+$spinner-background-color: rgba(0, 0, 0, 0);
+$orange: rgb(245, 127, 32);
+$blue: rgb(75, 168, 213);
+$violet: rgb(84, 69, 98);
+
+.spinner__wrapper {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000; // Sit on top
+  background-color: $background-color;
+  overflow-x: hidden; // Disable horizontal scroll
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin loader($size, $color, $thickness, $animation, $duration, $delay) {
+  width: #{$size}px;
+  height: #{$size}px;
+  border-top: #{$thickness}px solid $color;
+  border-right: #{$thickness}px solid $color;
+  border-bottom: #{$thickness}px solid fade-out($color, .7);
+  border-left: #{$thickness}px solid fade-out($color, .7);
+  border-radius: 50%;
+  margin: auto;
+  animation: $animation #{$duration}s infinite linear #{$delay}s;
+}
+
+.spinner {
+  background-color: $spinner-background-color;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rings {
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  display: flex;
+  opacity: 0;
+  animation: fade-in 1s ease-in 1s forwards;
+}
+
+.ring-1 {
+  @include loader(60, $orange, 5, spin-right, 3, 0);
+  .ring-2 {
+    @include loader(50, $blue, 5, spin-left, 2, 0.2);
+    .ring-3 {
+      @include loader(40, $violet, 5, spin-right, 1, 0.4);
+    }
+  }
+}
+
+@keyframes spin-right {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-left {
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes fade-in {
+  100% { opacity: 1; }
+}

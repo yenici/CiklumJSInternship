@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the ErrorScreen component.
+// -----------------------------------------------------------------------------
+$background-color: rgba(0, 0, 0, 0.85);
+
+.error-screen__wrapper {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100; // Sit on top
+  background-color: $background-color;
+  overflow-x: hidden; // Disable horizontal scroll
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

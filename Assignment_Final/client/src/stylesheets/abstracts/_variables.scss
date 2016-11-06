@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+$color_white: rgb(255, 255, 255);
+$color_black: rgb(0, 0, 0);
+$color_violet: rgb(84, 69, 98);
+$color_orange: rgb(245, 127, 32);
+$color_cyan: rgb(75, 168, 213);
+$color_gray: rgb(78, 78, 78);
+$color_gray_light: rgb(233, 233, 233);
+
+$font-main: 'Ubuntu', "Open Sans", sans-serif;
+$font-condensed: "Open Sans Condensed", sans-serif;
+$font-inputs: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$main_bg_color: $color_white;
+$main_fg_color: $color_black;

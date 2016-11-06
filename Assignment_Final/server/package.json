@@ -1,0 +1,26 @@
+{
+  "name": "ciklumspaceservice",
+  "version": "0.1.0",
+  "description": "Service for Ciklum Space App",
+  "main": "server.js",
+  "engines": {
+    "node": "6.9.1"
+  },
+  "scripts": {
+    "start": "node ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "passport.js",
+    "MongoDB",
+    "mongoose"
+  ],
+  "author": "Yenici",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.4"
+  }
+}

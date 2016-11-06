@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the FloorPanel component.
+// -----------------------------------------------------------------------------
+
+.floor-panel {
+  margin: 1rem 0.5rem 1rem 0;
+  padding: 0.5rem;
+  background-color: $color_gray;
+  color: $color_white;
+  border-radius: 5px;
+  flex: 1 25%;
+  justify-content: space-between;
+}

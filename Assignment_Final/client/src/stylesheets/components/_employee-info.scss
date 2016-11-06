@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the EmployeeInfo component.
+// -----------------------------------------------------------------------------
+$employee-info-width: 280px;
+
+.employee-info {
+  flex: 0 0 $employee-info-width;
+  overflow: hidden;
+  margin: 1rem 0;
+  color: $color_white;
+  text: {
+    align: center;
+    overflow: ellipsis;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+  }
+
+  &__photo {
+    flex: 0 0 100px;
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    background: {
+      position: center;
+      repeat: no-repeat;
+      size: contain;
+    }
+  }
+
+  &__name {
+    flex: 0 1;
+    padding-left: 0.5rem;
+    font-size: 1.25rem;
+    text: {
+      align: left;
+      overflow: ellipsis;
+    }
+  }
+
+  &__email {
+    color: $color_white;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+}
