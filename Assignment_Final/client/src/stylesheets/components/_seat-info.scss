@@ -1,22 +1,19 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the SeatInfo component.
 // -----------------------------------------------------------------------------
-
 .seat-info {
   text-align: center;
 
   &__title {
     text-align: center;
+  }
 
-    & span {
-      font-size: 1.25rem;
-      color: $color_white;
-      margin-right: 0.5rem;
-    }
+  &__title-input {
+    margin-bottom: 1rem;
   }
 
   .seat-info__name {
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: $color_cyan;
 
     &--free {
@@ -24,21 +21,17 @@
     }
   }
 
-  &__input {
-    font-size: 1rem;
-    color: $color_white;
-    background: $color_gray;
-    padding: 0.25rem 0.25rem;
-    //border-width: 1px;
-    border-radius: 5px;
-    //border-color: $color_gray;
-    box-shadow: none;
-
-  }
-
   &__free-message {
     font-size: 1rem;
     color: $color_white;
+    padding: 1rem 0;
+  }
+
+  &__buttons-block {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
     padding: 1rem 0;
   }
 }

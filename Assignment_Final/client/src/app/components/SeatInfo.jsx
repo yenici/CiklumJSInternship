@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Select from 'react-select';
 
 import EmployeeInfoContainer from '../containers/EmployeeInfoContainer.jsx';
-import CiklumSpaceService from '../actions/CiklumSpaceService';
+import CiklumSpaceService from '../services/CiklumSpaceService';
 
 const SeatInfo = ({
   floorPlanId, seat, fullAccess, modalMode,
@@ -11,30 +11,39 @@ const SeatInfo = ({
   onCancelSeatChange,
   onAddSeat,
   onUpdateSeat,
+  onDeleteSeat,
 }) => {
   if (fullAccess) {
     let saveBtn;
     if (modalMode) {
       saveBtn = modalMode === 'SEAT_ADD'
-        ? <button onClick={() => onAddSeat(floorPlanId, seat)}>Save</button>
-        : <button onClick={() => onUpdateSeat(floorPlanId, seat)}>Save</button>;
-        // ? <button onClick={(floorPlanId, seat) => onAddSeat(floorPlanId, seat)}>Save</button>
-        // : <button onClick={(floorPlanId, seat) => onUpdateSeat(floorPlanId, seat)}>Save</button>;
+        ? (
+          <button
+            className="pure-button pure-button-primary"
+            onClick={() => onAddSeat(floorPlanId, seat)}
+          >
+            Save
+          </button>)
+        : (
+          <button
+            className="pure-button pure-button-primary"
+            onClick={() => onUpdateSeat(floorPlanId, seat)}
+          >
+            Save
+          </button>);
     } else {
-      saveBtn = <button disabled>Save</button>;
+      saveBtn = <button className="pure-button pure-button-disabled" disabled>Save</button>;
     }
     return (
       <div className="seat-info">
-        <div className="seat-info__title">
-          <span>Title:</span>
+        <div className="seat-info__title-input pure-form pure-form-aligned pure-control-group">
           <input
-            className="__seat-info__input"
             value={seat.name}
             type="text"
             size="20"
             minLength="3"
             maxLength="20"
-            placeholder="Enter title (3-20 chars)"
+            placeholder="Enter title (up to 20 chars)"
             onChange={event => onChangeSeatName(event.target.value)}
           />
         </div>
@@ -53,16 +62,22 @@ const SeatInfo = ({
           ignoreCase
           onChange={newValue => onChangeSeatOccupant(newValue ? newValue.id : null)}
         />
-        <div>
+        <div className="seat-info__buttons-block">
           {saveBtn}
           {
             modalMode
-              ? <button onClick={() => onCancelSeatChange()}>Cancel</button>
-              : <button disabled>Cancel</button>
+              ? <button className="pure-button" onClick={() => onCancelSeatChange()}>Cancel</button>
+              : <button className="pure-button pure-button-disabled" disabled>Cancel</button>
           }
           {
             modalMode !== 'SEAT_ADD'
-              ? <button>Delete</button>
+              ? (
+                <button
+                  className="pure-button"
+                  onClick={() => onDeleteSeat(floorPlanId, seat)}
+                >
+                  Delete
+                </button>)
               : null
           }
         </div>
@@ -72,7 +87,6 @@ const SeatInfo = ({
   return (
     <div className="seat-info">
       <div className="seat-info__title">
-        <span>Title:</span>
         <span
           className={`seat-info__name${seat.occupant ? '' : ' seat-info__name--free'}`}
         >
@@ -87,15 +101,6 @@ const SeatInfo = ({
     </div>
   );
 };
-
-
-// <button className="primary">Add</button>
-// <div>
-//   <button>Remove</button>
-//   <button className="primary">Save</button>
-//   <button>Cancel</button>
-// </div>
-
 
 SeatInfo.propTypes = {
   floorPlanId: PropTypes.string.isRequired,
@@ -125,6 +130,7 @@ SeatInfo.propTypes = {
   onCancelSeatChange: PropTypes.func,
   onAddSeat: PropTypes.func,
   onUpdateSeat: PropTypes.func,
+  onDeleteSeat: PropTypes.func,
 };
 
 export default SeatInfo;

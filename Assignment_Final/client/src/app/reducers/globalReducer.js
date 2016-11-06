@@ -12,12 +12,14 @@ import {
   ADD_SEAT_RESPONSE,
   UPDATE_SEAT_REQUEST,
   UPDATE_SEAT_RESPONSE,
+  DELETE_SEAT_REQUEST,
+  DELETE_SEAT_RESPONSE,
 } from '../actions/spacePlannerActions';
 
 const INITIAL_STATE = {
   actionsInProgress: 0, // Number of actions in progress for spinner
   userId: '',
-  adminMode: true,
+  adminMode: false,
 };
 
 const globalReducer = (state = INITIAL_STATE, action) => {
@@ -27,6 +29,7 @@ const globalReducer = (state = INITIAL_STATE, action) => {
     case GET_EMPLOYEE_REQUEST:
     case ADD_SEAT_REQUEST:
     case UPDATE_SEAT_REQUEST:
+    case DELETE_SEAT_REQUEST:
       newState = Object.assign(
         {}, state,
         { actionsInProgress: state.actionsInProgress + 1 });
@@ -66,6 +69,7 @@ const globalReducer = (state = INITIAL_STATE, action) => {
       break;
     case UPDATE_SEAT_RESPONSE:
     case ADD_SEAT_RESPONSE:
+    case DELETE_SEAT_RESPONSE:
       newState = Object.assign(
         {}, state,
         { actionsInProgress: state.actionsInProgress - 1 },

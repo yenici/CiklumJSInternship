@@ -9,6 +9,7 @@ import {
   SEAT_CANCEL_CHANGE,
   ADD_SEAT_RESPONSE,
   UPDATE_SEAT_RESPONSE,
+  DELETE_SEAT_RESPONSE,
 } from '../actions/spacePlannerActions';
 
 const INITIAL_STATE = {
@@ -113,6 +114,7 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
       );
       break;
     case ADD_SEAT_RESPONSE:
+    case DELETE_SEAT_RESPONSE:
       if (!action.error) {
         newState = Object.assign(
           {},
@@ -121,20 +123,17 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
           { activeSeat: null }
         );
       } else {
-        newState = Object.assign(
-          {},
-          state,
-          { activeSeat: null },
-        );
+        newState = Object.assign({}, state, { activeSeat: null });
         // TODO: Error catcing
       }
       break;
     case UPDATE_SEAT_RESPONSE:
-      newState = Object.assign(
-        {},
-        state,
-        { activeSeat: null },
-      );
+      if (!action.error) {
+        newState = Object.assign({}, state, { seats: action.payload.data.seats });
+      } else {
+        newState = Object.assign({}, state, { activeSeat: null });
+        // TODO: Error catcing
+      }
       break;
     default:
       newState = state;

@@ -44,6 +44,22 @@ class CiklumSpaceService {
       })
       .then(employees => ({ options: employees }));
   }
+  static addSeat(floorPlanId, seat) {
+    const url = CS_SERVICE_URL.concat(`seat/floorplan/${floorPlanId}`);
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(seat),
+    }).then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      throw new Error(`Unexpected error: '${response.statusText}'`);
+    });
+  }
   static updateSeat(floorPlanId, seat) {
     const url = CS_SERVICE_URL.concat(`seat/floorplan/${floorPlanId}`);
     return fetch(url, {
@@ -60,10 +76,10 @@ class CiklumSpaceService {
       throw new Error(`Unexpected error: '${response.statusText}'`);
     });
   }
-  static addSeat(floorPlanId, seat) {
+  static deleteSeat(floorPlanId, seat) {
     const url = CS_SERVICE_URL.concat(`seat/floorplan/${floorPlanId}`);
     return fetch(url, {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

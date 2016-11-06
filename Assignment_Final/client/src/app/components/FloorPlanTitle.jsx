@@ -6,7 +6,7 @@ const FloorPlanTitle = function FloorPlanTitle({
   const button = modalMode ?
     (
       <button
-        className="primary"
+        className="pure-button pure-button-primary"
         onClick={onAddNewSeat}
         disabled
       >
@@ -15,7 +15,7 @@ const FloorPlanTitle = function FloorPlanTitle({
     ) :
     (
       <button
-        className="primary"
+        className="pure-button pure-button-primary"
         onClick={onAddNewSeat}
       >
         Add new seat

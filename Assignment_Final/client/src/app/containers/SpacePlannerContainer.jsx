@@ -16,6 +16,7 @@ import {
   cancelSeatChange,
   addSeat,
   updateSeat,
+  deleteSeat,
 } from '../actions/spacePlannerActions';
 
 class SpacePlannerContainer extends React.Component {
@@ -55,6 +56,7 @@ class SpacePlannerContainer extends React.Component {
                 onCancelSeatChange={this.props.cancelSeatChange}
                 onAddSeat={this.props.addSeat}
                 onUpdateSeat={this.props.updateSeat}
+                onDeleteSeat={this.props.deleteSeat}
               /> :
               null
           }
@@ -86,6 +88,7 @@ const mapDispatchToProps = dispatch => ({
   cancelSeatChange: () => dispatch(cancelSeatChange()),
   addSeat: (floorPlanId, seat) => dispatch(addSeat(floorPlanId, seat)),
   updateSeat: (floorPlanId, seat) => dispatch(updateSeat(floorPlanId, seat)),
+  deleteSeat: (floorPlanId, seat) => dispatch(deleteSeat(floorPlanId, seat)),
 });
 
 SpacePlannerContainer.propTypes = {
@@ -142,6 +145,7 @@ SpacePlannerContainer.propTypes = {
   cancelSeatChange: PropTypes.func,
   addSeat: PropTypes.func,
   updateSeat: PropTypes.func,
+  deleteSeat: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpacePlannerContainer);

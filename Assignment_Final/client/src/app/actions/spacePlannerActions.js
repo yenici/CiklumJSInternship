@@ -1,4 +1,4 @@
-import CiklumSpaceService from './CiklumSpaceService';
+import CiklumSpaceService from '../services/CiklumSpaceService';
 
 export const GET_FLOOR_REQUEST = 'GET_FLOOR_REQUEST';
 export const getFloorInfoRequest = () => ({
@@ -161,4 +161,26 @@ export const addSeat = (floorPlanId, seat) => (dispatch) => {
   return CiklumSpaceService.addSeat(floorPlanId, seat)
     .then(response => dispatch(addSeatResponse({ data: response })))
     .catch(error => dispatch(addSeatResponse({ message: error.toString() }, true)));
+};
+
+export const DELETE_SEAT_REQUEST = 'DELETE_SEAT_REQUEST';
+export const deleteSeatRequest = () => ({
+  type: DELETE_SEAT_REQUEST,
+});
+
+export const DELETE_SEAT_RESPONSE = 'DELETE_SEAT_RESPONSE';
+export const deleteSeatResponse = ({ data = [], message = '' }, error = false) => ({
+  type: DELETE_SEAT_RESPONSE,
+  payload: {
+    data,
+    message,
+  },
+  error,
+});
+
+export const deleteSeat = (floorPlanId, seat) => (dispatch) => {
+  dispatch(deleteSeatRequest());
+  return CiklumSpaceService.deleteSeat(floorPlanId, seat)
+    .then(response => dispatch(deleteSeatResponse({ data: response })))
+    .catch(error => dispatch(deleteSeatResponse({ message: error.toString() }, true)));
 };
