@@ -2,3 +2,4 @@
 node_modules/
 dist/
 app/config/config.secret.json
+npm-debug.log
