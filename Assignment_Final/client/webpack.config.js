@@ -10,8 +10,8 @@ module.exports = {
 
   output: {
     path: __dirname.concat('/dist/'),
-    // publicPath: 'http://yenici.github.io/CiklumJSInternship/Assignment_Final/',
-    publicPath: '',
+    publicPath: 'http://yenici.github.io/CiklumJSInternship/Assignment_Final/',
+    // publicPath: '',
     filename: 'scripts/[name].bundle.js',
   },
 

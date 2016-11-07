@@ -21,6 +21,11 @@ import {
 
 class SpacePlannerContainer extends React.Component {
   componentWillMount() {
+    /*
+       +-----------------------------------------------+
+       |   TODO: The hardcoded ID for the Floor Plan   |
+       +-----------------------------------------------+
+     */
     this.props.fetchFloorInfo('581f563cbc1c9f0f1c2faee5');
   }
   render() {
@@ -49,6 +54,7 @@ class SpacePlannerContainer extends React.Component {
               <SeatInfo
                 floorPlanId={this.props.floorPlanId}
                 seat={this.props.activeSeat}
+                token={this.props.token}
                 fullAccess={this.props.access}
                 modalMode={this.props.modalMode}
                 onChangeSeatName={this.props.changeSeatName}
@@ -66,31 +72,6 @@ class SpacePlannerContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  office: state.spacePlanner.office.name,
-  floorPlanId: state.spacePlanner.floor.id,
-  floor: state.spacePlanner.floor.name,
-  plan: state.spacePlanner.floor.plan,
-  seatRadius: state.spacePlanner.seatRadius,
-  seats: state.spacePlanner.seats,
-  activeSeat: state.spacePlanner.activeSeat,
-  access: state.globalState.adminMode,
-  modalMode: state.globalState.modalMode,
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchFloorInfo: floorPlanId => dispatch(getFloorInfo(floorPlanId)),
-  setActiveSeat: seatId => dispatch(setActiveSeat(seatId)),
-  addNewSeat: () => dispatch(addNewSeat()),
-  moveSeat: (x, y) => dispatch(moveSeat(x, y)),
-  changeSeatName: name => dispatch(changeSeatName(name)),
-  changeSeatOccupant: occupant => dispatch(changeSeatOccupant(occupant)),
-  cancelSeatChange: () => dispatch(cancelSeatChange()),
-  addSeat: (floorPlanId, seat) => dispatch(addSeat(floorPlanId, seat)),
-  updateSeat: (floorPlanId, seat) => dispatch(updateSeat(floorPlanId, seat)),
-  deleteSeat: (floorPlanId, seat) => dispatch(deleteSeat(floorPlanId, seat)),
-});
-
 SpacePlannerContainer.propTypes = {
   office: PropTypes.string,
   floorPlanId: PropTypes.string,
@@ -105,14 +86,8 @@ SpacePlannerContainer.propTypes = {
         y: PropTypes.number.isRequired,
         x: PropTypes.number.isRequired,
       }),
-      occupant: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object, // for null
-      ]),
-      occupantUrl: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object, // for null
-      ]),
+      occupant: PropTypes.string,
+      occupantUrl: PropTypes.string,
     })
   ).isRequired,
   activeSeat: PropTypes.shape({
@@ -122,20 +97,12 @@ SpacePlannerContainer.propTypes = {
       y: PropTypes.number.isRequired,
       x: PropTypes.number.isRequired,
     }),
-    occupant: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object, // for null
-    ]),
-    occupantUrl: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object, // for null
-    ]),
+    occupant: PropTypes.string,
+    occupantUrl: PropTypes.string,
   }),
+  token: PropTypes.bool,
   access: PropTypes.bool,
-  modalMode: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object, // for null
-  ]),
+  modalMode: PropTypes.string,
   fetchFloorInfo: PropTypes.func,
   setActiveSeat: PropTypes.func,
   addNewSeat: PropTypes.func,
@@ -147,5 +114,31 @@ SpacePlannerContainer.propTypes = {
   updateSeat: PropTypes.func,
   deleteSeat: PropTypes.func,
 };
+
+const mapStateToProps = state => ({
+  office: state.spacePlanner.office.name,
+  floorPlanId: state.spacePlanner.floor.id,
+  floor: state.spacePlanner.floor.name,
+  plan: state.spacePlanner.floor.plan,
+  seatRadius: state.spacePlanner.seatRadius,
+  seats: state.spacePlanner.seats,
+  activeSeat: state.spacePlanner.activeSeat,
+  token: state.globalState.token,
+  access: state.globalState.adminMode,
+  modalMode: state.globalState.modalMode,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchFloorInfo: floorPlanId => dispatch(getFloorInfo(floorPlanId)),
+  setActiveSeat: seatId => dispatch(setActiveSeat(seatId)),
+  addNewSeat: () => dispatch(addNewSeat()),
+  moveSeat: (x, y) => dispatch(moveSeat(x, y)),
+  changeSeatName: name => dispatch(changeSeatName(name)),
+  changeSeatOccupant: occupant => dispatch(changeSeatOccupant(occupant)),
+  cancelSeatChange: () => dispatch(cancelSeatChange()),
+  addSeat: (floorPlanId, seat, token) => dispatch(addSeat(floorPlanId, seat, token)),
+  updateSeat: (floorPlanId, seat, token) => dispatch(updateSeat(floorPlanId, seat, token)),
+  deleteSeat: (floorPlanId, seat, token) => dispatch(deleteSeat(floorPlanId, seat, token)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpacePlannerContainer);

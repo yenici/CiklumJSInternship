@@ -23,6 +23,7 @@ const INITIAL_STATE = {
   token: null,
   adminMode: false,
   message: null,
+  modalMode: null,
 };
 
 const globalReducer = (state = INITIAL_STATE, action) => {
@@ -64,6 +65,7 @@ const globalReducer = (state = INITIAL_STATE, action) => {
       newState = Object.assign(
         {}, state,
         {
+          modalMode: null,
           username: '',
           token: null,
           adminMode: false,

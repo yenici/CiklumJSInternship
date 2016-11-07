@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-const CS_SERVICE_URL = 'http://192.168.0.2:8080/api/';
+import { CS_SERVICE_URL } from '../appconfig';
 
 class CiklumSpaceService {
   static login(username, password) {
@@ -20,7 +20,7 @@ class CiklumSpaceService {
     });
   }
   static getFloor(floorPlanId) {
-    const url = CS_SERVICE_URL.concat(`floorplan/${floorPlanId}`);
+    const url = CS_SERVICE_URL.concat(`/floorplan/${floorPlanId}`);
     return fetch(url)
       .then((response) => {
         if (response.status === 200) {
@@ -34,7 +34,7 @@ class CiklumSpaceService {
       });
   }
   static getEmployee(employeeId) {
-    const url = CS_SERVICE_URL.concat(`employee/detail/${employeeId}`);
+    const url = CS_SERVICE_URL.concat(`/employee/detail/${employeeId}`);
     return fetch(url)
       .then((response) => {
         if (response.status === 200) {
@@ -49,8 +49,8 @@ class CiklumSpaceService {
   }
   static findEmployee(query, withEmail = false) {
     const url = withEmail
-      ? CS_SERVICE_URL.concat(`employee/find/${query}`)
-      : CS_SERVICE_URL.concat(`employee/findbyname/${query}`);
+      ? CS_SERVICE_URL.concat(`/employee/find/${query}`)
+      : CS_SERVICE_URL.concat(`/employee/findbyname/${query}`);
     return fetch(url)
       .then((response) => {
         if (response.status === 200) {
@@ -60,12 +60,12 @@ class CiklumSpaceService {
       })
       .then(employees => ({ options: employees }));
   }
-  static addSeat(floorPlanId, seat) {
-    const url = CS_SERVICE_URL.concat(`seat/floorplan/${floorPlanId}`);
+  static addSeat(floorPlanId, seat, token) {
+    const url = CS_SERVICE_URL.concat(`/seat/floorplan/${floorPlanId}`);
     return fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: '',
+        Authorization: token,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -77,12 +77,12 @@ class CiklumSpaceService {
       throw new Error(`Unexpected error: '${response.statusText}'`);
     });
   }
-  static updateSeat(floorPlanId, seat) {
-    const url = CS_SERVICE_URL.concat(`seat/floorplan/${floorPlanId}`);
+  static updateSeat(floorPlanId, seat, token) {
+    const url = CS_SERVICE_URL.concat(`/seat/floorplan/${floorPlanId}`);
     return fetch(url, {
       method: 'PUT',
       headers: {
-        Authorization: '',
+        Authorization: token,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -94,12 +94,12 @@ class CiklumSpaceService {
       throw new Error(`Unexpected error: '${response.statusText}'`);
     });
   }
-  static deleteSeat(floorPlanId, seat) {
-    const url = CS_SERVICE_URL.concat(`seat/floorplan/${floorPlanId}`);
+  static deleteSeat(floorPlanId, seat, token) {
+    const url = CS_SERVICE_URL.concat(`/seat/floorplan/${floorPlanId}`);
     return fetch(url, {
       method: 'DELETE',
       headers: {
-        Authorization: '',
+        Authorization: token,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },

@@ -1,15 +1,16 @@
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+// import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './components/App.jsx';
 import SpacePlannerContainer from './containers/SpacePlannerContainer.jsx';
-import LoginContainer from './containers/LoginContainer.jsx';
+import Login from './components/Login.jsx';
 
 export default (
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={SpacePlannerContainer} />
-      <Route path="/login" component={LoginContainer} />
+      <Route path="/login" component={Login} />
     </Route>
   </Router>
 );

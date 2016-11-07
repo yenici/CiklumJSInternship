@@ -41,7 +41,6 @@ router.post('/signin', authController.createUser);
 
 
 // Create endpoint handlers for /employee
-// router.get('/employee/', employeeController.employeesBootstrap);
 router.get('/employee/find/:query?', employeeController.findEmployees);
 router.get('/employee/findbyname/:query?', employeeController.findEmployeesByName);
 router.get('/employee/detail/:id', employeeController.getEmployeeDetail);
@@ -51,7 +50,6 @@ router.get('/employee/photo/:id', employeeController.getEmployeePhoto);
 router.get('/floorplan/:plan', floorPlanController.getFloorPlan);
 
 // Create endpoint handlers for /seat
-// router.get('/favorites', passport.authenticate('jwt', { session: false }), favoritesController.favoritesGet);
 router.post(
   '/seat/floorplan/:plan',
   passport.authenticate('jwt', { session: false }),
@@ -67,9 +65,6 @@ router.delete(
   passport.authenticate('jwt', { session: false }),
   floorPlanController.deleteSeat
 );
-// router.post('/seat/floorplan/:plan', floorPlanController.addSeat);
-// router.put('/seat/floorplan/:plan', floorPlanController.updateSeat);
-// router.delete('/seat/floorplan/:plan', floorPlanController.deleteSeat);
 
 // Register all our routes with /api
 app.use('/api', router);

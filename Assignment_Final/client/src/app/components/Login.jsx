@@ -1,4 +1,8 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+
+import { login } from '../actions/authActions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -8,7 +12,6 @@ class Login extends React.Component {
       password: '',
     };
   }
-  fgh() {}
   render() {
     const messageStyle = {
       color: 'red',
@@ -16,8 +19,16 @@ class Login extends React.Component {
       textAlign: 'center',
       overflow: 'hidden',
     };
+    if (this.props.token) {
+      return (
+        <div className="login-form login-form__hello pure-form pure-form-aligned">
+          <h1>{`Hello, ${this.props.username}`}!</h1>
+          <Link to="/" className="pure-button pure-button-primary">Continue</Link>
+        </div>
+      );
+    }
     return (
-      <div className="login-form pure-form pure-form-aligned">
+      <form className="login-form pure-form pure-form-aligned" id="login-form">
         <fieldset>
           <div className="pure-control-group">
             <label htmlFor="name">Username</label>
@@ -44,6 +55,8 @@ class Login extends React.Component {
           <div style={messageStyle}>{this.props.message}</div>
           <div className="pure-controls">
             <button
+              form="login-form"
+              type="button"
               className="pure-button pure-button-primary"
               onClick={() => this.props.onLogin(this.state.username, this.state.password)}
             >
@@ -51,14 +64,26 @@ class Login extends React.Component {
             </button>
           </div>
         </fieldset>
-      </div>
+      </form>
     );
   }
 }
 
 Login.PropTypes = {
+  token: PropTypes.string,
+  username: PropTypes.string,
   message: PropTypes.string,
   onLogin: PropTypes.func,
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  token: state.globalState.token,
+  username: state.globalState.username,
+  message: state.globalState.message,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLogin: (username, password) => dispatch(login(username, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

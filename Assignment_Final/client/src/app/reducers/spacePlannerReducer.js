@@ -12,6 +12,8 @@ import {
   DELETE_SEAT_RESPONSE,
 } from '../actions/spacePlannerActions';
 
+import { LOGOUT } from '../actions/authActions';
+
 const INITIAL_STATE = {
   office: {
     id: '',
@@ -33,6 +35,13 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
   let newState;
   let activeSeat;
   switch (action.type) {
+    case LOGOUT:
+      newState = Object.assign(
+        {},
+        state,
+        { activeSeat: null },
+      );
+      break;
     case GET_FLOOR_RESPONSE:
       if (!action.error) {
         newState = Object.assign(action.payload.data, { activeSeat: null, activeOccupant: null });

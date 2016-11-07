@@ -15,7 +15,7 @@ export const getFloorInfoResponse = ({ data = [], message = '' }, error = false)
   error,
 });
 
-export const getFloorInfo = (floorPlanId) => (dispatch) => {
+export const getFloorInfo = floorPlanId => (dispatch) => {
   dispatch(getFloorInfoRequest());
   return CiklumSpaceService.getFloor(floorPlanId)
     .then(response => dispatch(getFloorInfoResponse({ data: response })))
@@ -134,9 +134,9 @@ export const updateSeatResponse = ({ data = [], message = '' }, error = false) =
   error,
 });
 
-export const updateSeat = (floorPlanId, seat) => (dispatch) => {
+export const updateSeat = (floorPlanId, seat, token) => (dispatch) => {
   dispatch(updateSeatRequest());
-  return CiklumSpaceService.updateSeat(floorPlanId, seat)
+  return CiklumSpaceService.updateSeat(floorPlanId, seat, token)
     .then(response => dispatch(updateSeatResponse({ data: response })))
     .catch(error => dispatch(updateSeatResponse({ message: error.toString() }, true)));
 };
@@ -156,9 +156,9 @@ export const addSeatResponse = ({ data = [], message = '' }, error = false) => (
   error,
 });
 
-export const addSeat = (floorPlanId, seat) => (dispatch) => {
+export const addSeat = (floorPlanId, seat, token) => (dispatch) => {
   dispatch(addSeatRequest());
-  return CiklumSpaceService.addSeat(floorPlanId, seat)
+  return CiklumSpaceService.addSeat(floorPlanId, seat, token)
     .then(response => dispatch(addSeatResponse({ data: response })))
     .catch(error => dispatch(addSeatResponse({ message: error.toString() }, true)));
 };
@@ -178,9 +178,9 @@ export const deleteSeatResponse = ({ data = [], message = '' }, error = false) =
   error,
 });
 
-export const deleteSeat = (floorPlanId, seat) => (dispatch) => {
+export const deleteSeat = (floorPlanId, seat, token) => (dispatch) => {
   dispatch(deleteSeatRequest());
-  return CiklumSpaceService.deleteSeat(floorPlanId, seat)
+  return CiklumSpaceService.deleteSeat(floorPlanId, seat, token)
     .then(response => dispatch(deleteSeatResponse({ data: response })))
     .catch(error => dispatch(deleteSeatResponse({ message: error.toString() }, true)));
 };

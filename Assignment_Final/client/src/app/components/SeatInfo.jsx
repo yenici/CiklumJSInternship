@@ -5,7 +5,7 @@ import EmployeeInfoContainer from '../containers/EmployeeInfoContainer.jsx';
 import CiklumSpaceService from '../services/CiklumSpaceService';
 
 const SeatInfo = ({
-  floorPlanId, seat, fullAccess, modalMode,
+  floorPlanId, seat, token, fullAccess, modalMode,
   onChangeSeatName,
   onChangeSeatOccupant,
   onCancelSeatChange,
@@ -20,14 +20,14 @@ const SeatInfo = ({
         ? (
           <button
             className="pure-button pure-button-primary"
-            onClick={() => onAddSeat(floorPlanId, seat)}
+            onClick={() => onAddSeat(floorPlanId, seat, token)}
           >
             Save
           </button>)
         : (
           <button
             className="pure-button pure-button-primary"
-            onClick={() => onUpdateSeat(floorPlanId, seat)}
+            onClick={() => onUpdateSeat(floorPlanId, seat, token)}
           >
             Save
           </button>);
@@ -74,7 +74,7 @@ const SeatInfo = ({
               ? (
                 <button
                   className="pure-button"
-                  onClick={() => onDeleteSeat(floorPlanId, seat)}
+                  onClick={() => onDeleteSeat(floorPlanId, seat, token)}
                 >
                   Delete
                 </button>)
@@ -111,20 +111,11 @@ SeatInfo.propTypes = {
       y: PropTypes.number.isRequired,
       x: PropTypes.number.isRequired,
     }),
-    occupant: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object, // for null
-    ]),
-    occupantUrl: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object, // for null
-    ]),
+    occupant: PropTypes.string,
+    occupantUrl: PropTypes.string,
   }),
   fullAccess: PropTypes.bool,
-  modalMode: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object, // for null
-  ]),
+  modalMode: PropTypes.string,
   onChangeSeatName: PropTypes.func,
   onChangeSeatOccupant: PropTypes.func,
   onCancelSeatChange: PropTypes.func,
