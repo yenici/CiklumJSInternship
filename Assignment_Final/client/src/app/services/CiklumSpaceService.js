@@ -3,6 +3,22 @@ import fetch from 'isomorphic-fetch';
 const CS_SERVICE_URL = 'http://192.168.0.2:8080/api/';
 
 class CiklumSpaceService {
+  static login(username, password) {
+    const url = CS_SERVICE_URL.concat('/authenticate');
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    }).then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      throw new Error(`Unexpected error: '${response.statusText}'`);
+    });
+  }
   static getFloor(floorPlanId) {
     const url = CS_SERVICE_URL.concat(`floorplan/${floorPlanId}`);
     return fetch(url)
@@ -49,6 +65,7 @@ class CiklumSpaceService {
     return fetch(url, {
       method: 'POST',
       headers: {
+        Authorization: '',
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -65,6 +82,7 @@ class CiklumSpaceService {
     return fetch(url, {
       method: 'PUT',
       headers: {
+        Authorization: '',
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -81,6 +99,7 @@ class CiklumSpaceService {
     return fetch(url, {
       method: 'DELETE',
       headers: {
+        Authorization: '',
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },

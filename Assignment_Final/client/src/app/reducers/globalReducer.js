@@ -15,11 +15,14 @@ import {
   DELETE_SEAT_REQUEST,
   DELETE_SEAT_RESPONSE,
 } from '../actions/spacePlannerActions';
+import { LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT } from '../actions/authActions';
 
 const INITIAL_STATE = {
   actionsInProgress: 0, // Number of actions in progress for spinner
-  userId: '',
+  username: '',
+  token: null,
   adminMode: false,
+  message: null,
 };
 
 const globalReducer = (state = INITIAL_STATE, action) => {
@@ -30,9 +33,42 @@ const globalReducer = (state = INITIAL_STATE, action) => {
     case ADD_SEAT_REQUEST:
     case UPDATE_SEAT_REQUEST:
     case DELETE_SEAT_REQUEST:
+    case LOGIN_REQUEST:
       newState = Object.assign(
         {}, state,
         { actionsInProgress: state.actionsInProgress + 1 });
+      break;
+    case LOGIN_RESPONSE:
+      if (action.payload.data.success) {
+        newState = Object.assign(
+          {}, state,
+          {
+            actionsInProgress: state.actionsInProgress - 1,
+            username: action.payload.data.username,
+            token: action.payload.data.token,
+            adminMode: true,
+            message: null,
+          }
+        );
+      } else {
+        newState = Object.assign(
+          {}, state,
+          {
+            actionsInProgress: state.actionsInProgress - 1,
+            message: action.payload.data.message,
+          }
+        );
+      }
+      break;
+    case LOGOUT:
+      newState = Object.assign(
+        {}, state,
+        {
+          username: '',
+          token: null,
+          adminMode: false,
+        }
+      );
       break;
     case GET_FLOOR_RESPONSE:
     case GET_EMPLOYEE_RESPONSE:
