@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Employee = require('../models/EmployeeModel');
-//const Office = require('../models/OfficeModel');
 
 exports.findEmployees = (req, res) => {
   const query = Employee.find({});

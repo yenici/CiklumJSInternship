@@ -40,31 +40,51 @@ exports.addSeat = (req, res) => {
     occupant: req.body.occupant,
     position: req.body.position,
   };
-  FloorPlan.findByIdAndUpdate(
-    req.params.plan,
-    { $push: { seats: seat } },
-    { new: true, upsert: true },
-    function(err, floorPlan) {
-      if (err) {
-        if (err.name === 'CastError') {
-          res.status(400).send('Bad request. Floor plan ID is incorrect.');
+  const insertSeat = () => {
+    FloorPlan.findByIdAndUpdate(
+      req.params.plan,
+      { $push: { seats: seat } },
+      { new: true, upsert: true },
+      function(err, floorPlan) {
+        if (err) {
+          if (err.name === 'CastError') {
+            res.status(400).send('Bad request. Floor plan ID is incorrect.');
+          } else {
+            res.status(500).send('Server error on finding the floor.');
+          }
         } else {
-          res.status(500).send('Server error on finding the floor.');
+          const seatsRes = floorPlan.seats.map(seat => ({
+            id: seat.id,
+            name: seat.name,
+            position: seat.position,
+            occupant: seat.occupant,
+            occupantUrl: seat.occupant ?
+              `${req.protocol}://${req.get('host')}/api/employee/detail/${seat.occupant}` :
+              null,
+          }));
+          res.json({seats: seatsRes});
         }
-      } else {
-        const seatsRes = floorPlan.seats.map(seat => ({
-          id: seat.id,
-          name: seat.name,
-          position: seat.position,
-          occupant: seat.occupant,
-          occupantUrl: seat.occupant ?
-            `${req.protocol}://${req.get('host')}/api/employee/detail/${seat.occupant}` :
-            null,
-        }));
-        res.json({seats: seatsRes});
       }
-    }
-  );
+    );
+  };
+  if (seat.occupant) {
+    // Check if employee has a seat and free that seat
+    FloorPlan.findOneAndUpdate(
+      { 'seats.occupant': seat.occupant },
+      { $set: { 'seats.$.occupant': null } },
+      { new: true, multi: false },
+      (err, floorPlan) => {
+        if (err) {
+          res.status(500).send('Server error on finding the floor.');
+        } else {
+          insertSeat(req, res, seat);
+        }
+      }
+    );
+  } else {
+    // New seat has no occupant
+    insertSeat(req, res, seat);
+  }
 };
 
 exports.updateSeat = (req, res) => {
