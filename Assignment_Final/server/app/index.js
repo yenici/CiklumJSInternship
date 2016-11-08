@@ -57,7 +57,7 @@ router.post(
 );
 router.put(
   '/seat/floorplan/:plan',
-  passport.authenticate('jwt', { session: false }),
+  // passport.authenticate('jwt', { session: false }),
   floorPlanController.updateSeat
 );
 router.delete(

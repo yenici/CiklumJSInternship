@@ -1,5 +1,5 @@
 {
   "port": 8080,
   "secret": "your secret phrase",
-  "mongoConnectionString": ""
+  "mongoConnectionString": "mongodb://name:password@ds147797.mlab.com:147797/ciklumspace"
 }
