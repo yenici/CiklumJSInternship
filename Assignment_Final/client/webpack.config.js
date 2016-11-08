@@ -10,8 +10,9 @@ module.exports = {
 
   output: {
     path: __dirname.concat('/dist/'),
-    publicPath: 'http://yenici.github.io/CiklumJSInternship/Assignment_Final/',
-    // publicPath: '',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? 'http://yenici.github.io/CiklumJSInternship/Assignment_Final/'
+      : '',
     filename: 'scripts/[name].bundle.js',
   },
 
