@@ -1,5 +1,14 @@
 import CiklumSpaceService from '../services/CiklumSpaceService';
 
+export const HIDE_ERROR_WINDOW = 'HIDE_ERROR_WINDOW';
+export const hideErrorWindow = () => ({
+  type: HIDE_ERROR_WINDOW,
+  payload: {
+    message: null,
+  },
+  error: false,
+});
+
 export const GET_FLOOR_REQUEST = 'GET_FLOOR_REQUEST';
 export const getFloorInfoRequest = () => ({
   type: GET_FLOOR_REQUEST,

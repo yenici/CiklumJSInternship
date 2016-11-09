@@ -23,8 +23,6 @@ const EmployeeInfo = function EmployeeInfo({ name, email, photo }) {
   );
 };
 
-// <div className="employee-info__email">{`${email}qweqwrqetwrtytyutyuiiyutiuyttreqewqew`}</div>
-
 EmployeeInfo.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,

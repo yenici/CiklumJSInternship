@@ -1,4 +1,5 @@
 import {
+  HIDE_ERROR_WINDOW,
   GET_FLOOR_RESPONSE,
   SET_ACTIVE_SEAT,
   GET_EMPLOYEE_RESPONSE,
@@ -15,6 +16,7 @@ import {
 import { LOGOUT } from '../actions/authActions';
 
 const INITIAL_STATE = {
+  errors: [],
   office: {
     id: '',
     name: '',
@@ -35,6 +37,13 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
   let newState;
   let activeSeat;
   switch (action.type) {
+    case HIDE_ERROR_WINDOW:
+      newState = Object.assign(
+        {},
+        state,
+        { errors: [].concat(state.errors.splice(1)) },
+      );
+      break;
     case LOGOUT:
       newState = Object.assign(
         {},
@@ -44,10 +53,15 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
       break;
     case GET_FLOOR_RESPONSE:
       if (!action.error) {
-        newState = Object.assign(action.payload.data, { activeSeat: null, activeOccupant: null });
+        newState = Object.assign(action.payload.data,
+          { activeSeat: null, activeOccupant: null, errors: state.errors });
       } else {
-        newState = state;
         // TODO: Error catcing
+        newState = Object.assign(
+          {},
+          state,
+          { errors: state.errors.concat([action.payload.message]) },
+        );
       }
       break;
     case SET_ACTIVE_SEAT:
@@ -60,7 +74,11 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
         newState = Object.assign({}, state, { activeOccupant: action.payload.data });
       } else {
         // TODO: Error catcing
-        newState = state;
+        newState = Object.assign(
+          {},
+          state,
+          { errors: state.errors.concat([action.payload.message]) },
+        );
       }
       break;
     case ADD_NEW_SEAT:
@@ -132,7 +150,15 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
           { activeSeat: null }
         );
       } else {
-        newState = Object.assign({}, state, { activeSeat: null });
+        // newState = Object.assign({}, state, { activeSeat: null });
+        newState = Object.assign(
+          {},
+          state,
+          {
+            activeSeat: null,
+            errors: state.errors.concat([action.payload.message]),
+          },
+        );
         // TODO: Error catcing
       }
       break;
@@ -140,7 +166,15 @@ const seatsPlannerReducer = (state = INITIAL_STATE, action) => {
       if (!action.error) {
         newState = Object.assign({}, state, { seats: action.payload.data.seats });
       } else {
-        newState = Object.assign({}, state, { activeSeat: null });
+        // newState = Object.assign({}, state, { activeSeat: null });
+        newState = Object.assign(
+          {},
+          state,
+          {
+            activeSeat: null,
+            errors: state.errors.concat([action.payload.message]),
+          },
+        );
         // TODO: Error catcing
       }
       break;
