@@ -1,0 +1,18 @@
+.fpwrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.fpi {
+  width: 0;
+  overflow: hidden;
+}
+
+.fpi--active {
+  width: 24%;
+  min-width: 245px;
+  margin: 0.5em 0;
+  text-align: center;
+  overflow: hidden;
+}

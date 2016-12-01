@@ -1,0 +1,33 @@
+$title-color: #00bcd4;
+
+.floor-plan {
+
+  &__title {
+    padding: 0.5em 1em 0 1em;
+    margin: 0;
+    color: $title-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}
+
+.fpwrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.fpi {
+  width: 0;
+  overflow: hidden;
+
+  &--active {
+    width: 24%;
+    min-width: 245px;
+    margin: 0.5em 0;
+    text-align: center;
+    overflow: hidden;
+  }
+}
