@@ -18,6 +18,9 @@ class FloorPlanContainer extends React.Component {
   render() {
     console.info('render call...');
     // activeSeatId="58204762db89262a380b04fe"
+    // <Paper className={this.props.floor.activeSeat ? 'fpi--active' : 'fpi'} zDepth={1}>
+    //   <h2 className="floor-plan__title">Info</h2>
+    // </Paper>
     return (
       <div className="fpwrapper">
         <FloorPlan
@@ -28,10 +31,8 @@ class FloorPlanContainer extends React.Component {
           seats={this.props.floor.seats}
           activeSeatId={this.props.floor.activeSeat ? this.props.floor.activeSeat.id : null}
           onSeatSelect={this.props.onClickOnSeat}
+          onSeatMove={() => console.info('Seat MOVED')}
         />
-        <Paper className={this.props.floor.activeSeat ? 'fpi--active' : 'fpi'} zDepth={1}>
-          <h2 className="floor-plan__title">Info</h2>
-        </Paper>
       </div>
     );
   }
@@ -90,7 +91,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchFloorInfo: floorPlanId => dispatch(getFloorInfo(floorPlanId)),
-  // onSeatSelect: seatId => dispatch(setActiveSeat(seatId)),
+  onSeatSelect: seatId => dispatch(setActiveSeat(seatId)),
   onClickOnSeat: seatId => dispatch(setActiveSeat(seatId)),
   onMoveSeat: (x, y) => dispatch(moveSeat(x, y)),
   // addNewSeat: () => dispatch(addNewSeat()),

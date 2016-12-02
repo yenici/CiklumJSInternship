@@ -13,13 +13,20 @@ class FloorPlan extends React.Component {
 
   constructor(props) {
     super(props);
-    this.svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
-    this.svgElement = null;
-    this.svgGroup = null;
-    this.planElement = null;
-    this.seatsGroup = null;
-    this.activeSeat = null;
+    // this.svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
+    // this.svgElement = null;
+    // this.svgGroup = null;
+    // this.planElement = null;
+    // this.seatsGroup = null;
+    // this.activeSeat = null;
   }
+
+  svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
+  svgElement = null;
+  svgGroup = null;
+  planElement = null;
+  seatsGroup = null;
+  activeSeat = null;
 
   componentDidMount() {
     this.svgElement = svgjs(this.svgElementId).size('100%', '100%').spof();
@@ -57,15 +64,11 @@ class FloorPlan extends React.Component {
       } else {
         if (this.props.seatRadius !== nextProps.seatRadius) {
           this.renderSeats(nextProps);
-          // TODO: Render seats
         }
-        if (this.props.seats !== nextProps.seats) {
+        if (this.props.seats !== nextProps.seats || this.props.activeSeatId !== nextProps.activeSeatId) {
+          // The second condition is used to ensure that the active seat is the last
+          // rendered set (overflow other seats)
           this.renderSeats(nextProps);
-          // TODO: Render seats
-        }
-        if (this.props.activeSeatId !== nextProps.activeSeatId) {
-          // TODO: Render previous active seat
-          // TODO: Render current active seat
         }
       }
     }
@@ -97,7 +100,7 @@ class FloorPlan extends React.Component {
       this.planElement = svgjs.get('floorplan');
       this.planElement.addTo(this.svgGroup);
       // A group for seats
-      this.seatsGroup = this.svgElement.group();
+      this.seatsGroup = this.planElement.group();
       this.seatsGroup.addTo(this.svgGroup);
       this.scalePlan();
     }
@@ -133,22 +136,12 @@ class FloorPlan extends React.Component {
       'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z';
     const seatSvgGroup = this.seatsGroup.group();
     seatSvgGroup
-      .id(`${SVG_SEAT_ID_PREFIX}${seat.id}`);
+      .id(`${SVG_SEAT_ID_PREFIX}${seat.id}`)
+      .addClass(isActive ? 'floor-plan__seat--active' : 'floor-plan__seat');
     if (this.props.onSeatSelect) {
       seatSvgGroup.attr({ cursor: 'pointer' });
     }
-    if (isActive && this.props.onSeatMove) {
-      seatSvgGroup
-        .attr({ cursor: 'move' })
-        .draggable({
-          minX: 0,
-          minY: 0,
-          maxX: this.planElement.width(),
-          maxY: this.planElement.height(),
-        });
-    }
     seatSvgGroup.circle(2 * seatRadius)
-      .addClass(isActive ? 'floor-plan__seat--active' : 'floor-plan__seat')
       .x(seat.position.x)
       .y(seat.position.y);
     if (seat.occupant) {
@@ -158,8 +151,18 @@ class FloorPlan extends React.Component {
         .y(seat.position.y + iconShift)
         .scale(iconScale);
     }
+    if (isActive && this.props.onSeatMove) {
+      seatSvgGroup
+        .attr({ cursor: 'move' })
+        // TODO: Limits are not applied to a seat
+        .draggable({
+          minX: 0,
+          minY: 0,
+          maxX: this.planElement.width(),
+          maxY: this.planElement.height(),
+        });
+    }
   }
-  // renderSeatactive() {}
 
   render() {
     // <ReactResizeDetector handleWidth onResize={() => this.scalePlan()} />
