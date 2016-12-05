@@ -5,6 +5,6 @@ import createLogger from 'redux-logger';
 import Reducers from '../reducers/';
 
 export default function configureStore() {
-  return createStore(Reducers, applyMiddleware(thunkMiddleware));
-  // return createStore(Reducers, applyMiddleware(thunkMiddleware, createLogger()));
+  // return createStore(Reducers, applyMiddleware(thunkMiddleware));
+  return createStore(Reducers, applyMiddleware(thunkMiddleware, createLogger()));
 }

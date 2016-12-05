@@ -11,15 +11,15 @@ const PLAN_MAX_ZOOM_SCALE = 0.95;
 
 class FloorPlan extends React.Component {
 
-  constructor(props) {
-    super(props);
-    // this.svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
-    // this.svgElement = null;
-    // this.svgGroup = null;
-    // this.planElement = null;
-    // this.seatsGroup = null;
-    // this.activeSeat = null;
-  }
+  // constructor(props) {
+  //   super(props);
+  //   // this.svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
+  //   // this.svgElement = null;
+  //   // this.svgGroup = null;
+  //   // this.planElement = null;
+  //   // this.seatsGroup = null;
+  //   // this.activeSeat = null;
+  // }
 
   svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
   svgElement = null;
@@ -34,19 +34,16 @@ class FloorPlan extends React.Component {
     // svgjs.on(window, 'resize', () => {
     //   this.svgWrapper.element.spof();
     // });
-    // this.svgElement.on('click', e => this.props.onSeatSelect(e.target));
     this.svgElement.on('click', e => {
       let selectedSeatId = null;
       if (e.target.parentNode.id.substr(0, SVG_SEAT_ID_PREFIX.length) === SVG_SEAT_ID_PREFIX) {
         selectedSeatId = e.target.parentNode.id.substr(SVG_SEAT_ID_PREFIX.length);
       }
-      // console.info(this.props.onSeatSelect);
       this.props.onSeatSelect(selectedSeatId);
     });
     // this.svgElement.on('click', e => {
     //   this.seatsGroup.clear();
     // });
-    // if (this.props.plan) update svg;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -169,7 +166,7 @@ class FloorPlan extends React.Component {
     return (
       <Paper className={this.props.activeSeatId ? 'floor-plan__paper--small' : 'floor-plan__paper'} zDepth={1}>
         <h2 className="floor-plan__title">
-          {this.props.officeName ? `${this.props.officeName} - ${this.props.floorName}` : ''}
+          {this.props.officeName && `${this.props.officeName} - ${this.props.floorName}`}
         </h2>
         <div id={this.svgElementId} className="floor-plan__svg-wrapper" />
       </Paper>
