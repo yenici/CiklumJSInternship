@@ -56,24 +56,6 @@ export default class FloorPlanSvg {
     }
   }
 
-  // renderSvg(nextProps) {
-  //   if (nextProps) {
-  //     if (this.props.plan !== nextProps.plan) {
-  //       this.renderPlan(nextProps);
-  //       this.renderSeats(nextProps);
-  //     } else {
-  //       if (this.props.seatRadius !== nextProps.seatRadius) {
-  //         this.renderSeats(nextProps);
-  //       }
-  //       if (this.props.seats !== nextProps.seats || this.props.activeSeatId !== nextProps.activeSeatId) {
-  //         // The second condition is used to ensure that the active seat is the last
-  //         // rendered set (overflow other seats)
-  //         this.renderSeats(nextProps);
-  //       }
-  //     }
-  //   }
-  // }
-
   scalePlan() {
     // Restore the scale
     this.svgElement.scale(1, 1);
@@ -133,6 +115,9 @@ export default class FloorPlanSvg {
     seatSvgGroup.circle(2 * seatRadius)
       .x(seat.position.x)
       .y(seat.position.y);
+    // seatSvgGroup.rect(2 * seatRadius, 2 * seatRadius)
+    //   .x(seat.position.x)
+    //   .y(seat.position.y);
     if (seat.occupant) {
       // Original size of the person icon is 16px x 16px
       // The size (width and height) or the person icon should be
@@ -153,16 +138,26 @@ export default class FloorPlanSvg {
     if (isActive && this.onSeatMove) {
       seatSvgGroup
         .attr({ cursor: 'move' })
-        // TODO: Limits are not applied to a seat
         .draggable({
           minX: 0,
           minY: 0,
-          maxX: this.planElement.width(),
-          maxY: this.planElement.height(),
+          maxX: this.planElement.width() - 2 * this.seatRadius,
+          maxY: this.planElement.height() - 2 * this.seatRadius,
         })
-        // .on('dragend', e => console.info(this));
-        // .on('dragstart', e => console.info(`${e.detail.p.x} ${e.detail.p.y}`))
-        .on('dragend', e => console.info(`${e.detail.p.x - seatRadius} ${e.detail.p.y - seatRadius}`));
+        // .draggable(() => {
+        //   const newX = seat.position.x + seatSvgGroup.transform('x');
+        //   const newY = seat.position.y + seatSvgGroup.transform('y');
+        //   console.log(`Drag to: (${newX}, ${newY})`);
+        //   return ({
+        //     x: newX >= 0 && newX <= (this.planElement.width() - 2 * this.seatRadius),
+        //     y: newY >= 0 && newY <= (this.planElement.height() - 2 * this.seatRadius),
+        //   });
+        // })
+        .on('dragend', () => {
+          const newX = seat.position.x + seatSvgGroup.transform('x');
+          const newY = seat.position.y + seatSvgGroup.transform('y');
+          this.onSeatMove(newX, newY);
+        });
     }
   }
 

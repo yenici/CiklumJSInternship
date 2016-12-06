@@ -1,6 +1,7 @@
 .floor-plan__seat {
   fill: rgb(0, 188, 212);
   stroke-width: 0;
+  /*box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0 1px 4px;*/
 }
 
 .floor-plan__seat:hover {
