@@ -1,166 +1,24 @@
 import React, { PropTypes } from 'react';
 import Paper from 'material-ui/Paper';
-import svgjs from 'svg.js';
-import 'svg.draggable.js';
 
 import './FloorPlan.css';
+import FloorPlanSvg from './FloorPlanSvg';
 
 const SVG_WRAPPER_ID_PREFIX = 'cs_f_id';
-const SVG_SEAT_ID_PREFIX = 'cs_s_id';
-const PLAN_MAX_ZOOM_SCALE = 0.95;
 
 class FloorPlan extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   // this.svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
-  //   // this.svgElement = null;
-  //   // this.svgGroup = null;
-  //   // this.planElement = null;
-  //   // this.seatsGroup = null;
-  //   // this.activeSeat = null;
-  // }
-
   svgElementId = `${SVG_WRAPPER_ID_PREFIX}${Math.random().toString().substr(2)}`;
-  svgElement = null;
-  svgGroup = null;
-  planElement = null;
-  seatsGroup = null;
-  activeSeat = null;
 
   componentDidMount() {
-    this.svgElement = svgjs(this.svgElementId).size('100%', '100%').spof();
-    this.renderSvg(this.props);
-    // svgjs.on(window, 'resize', () => {
-    //   this.svgWrapper.element.spof();
-    // });
-    this.svgElement.on('click', e => {
-      let selectedSeatId = null;
-      if (e.target.parentNode.id.substr(0, SVG_SEAT_ID_PREFIX.length) === SVG_SEAT_ID_PREFIX) {
-        selectedSeatId = e.target.parentNode.id.substr(SVG_SEAT_ID_PREFIX.length);
-      }
-      this.props.onSeatSelect(selectedSeatId);
-    });
-    // this.svgElement.on('click', e => {
-    //   this.seatsGroup.clear();
-    // });
+    this.floorPlanSvg = new FloorPlanSvg(this.svgElementId);
+    this.floorPlanSvg.render(this.props);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    this.renderSvg(nextProps);
+    this.floorPlanSvg.render(nextProps);
     return nextProps.officeName !== this.props.officeName ||
       nextProps.floorName !== this.props.floorName;
-  }
-
-  renderSvg(nextProps) {
-    if (nextProps) {
-      if (this.props.plan !== nextProps.plan) {
-        this.renderPlan(nextProps);
-        this.renderSeats(nextProps);
-      } else {
-        if (this.props.seatRadius !== nextProps.seatRadius) {
-          this.renderSeats(nextProps);
-        }
-        if (this.props.seats !== nextProps.seats || this.props.activeSeatId !== nextProps.activeSeatId) {
-          // The second condition is used to ensure that the active seat is the last
-          // rendered set (overflow other seats)
-          this.renderSeats(nextProps);
-        }
-      }
-    }
-  }
-
-  scalePlan() {
-    // Restore the scale
-    this.svgElement.scale(1, 1);
-    // Align the floor plan in the center of a DIV
-    this.svgGroup
-      .x((this.svgElement.viewbox().width - this.planElement.width()) / 2);
-    this.svgGroup
-      .y((this.svgElement.viewbox().height - this.planElement.height()) / 2);
-    // Zoom the floor plan according to the DIV's size
-    const zoom = PLAN_MAX_ZOOM_SCALE * Math.min(
-        this.svgElement.viewbox().width / this.planElement.width(),
-        this.svgElement.viewbox().height / this.planElement.height());
-    this.svgGroup.scale(zoom, zoom);
-  }
-
-  renderPlan({ plan }) {
-    if (this.svgElement && plan) {
-      this.svgElement.clear();
-      // Show the floor plan
-      this.svgElement.svg(plan);
-      // A group for dragging and zooming
-      this.svgGroup = this.svgElement.group();
-      // 'floorplan' is an ID inside svg for floor plan
-      this.planElement = svgjs.get('floorplan');
-      this.planElement.addTo(this.svgGroup);
-      // A group for seats
-      this.seatsGroup = this.planElement.group();
-      this.seatsGroup.addTo(this.svgGroup);
-      this.scalePlan();
-    }
-  }
-
-  renderSeats({ seats, seatRadius, activeSeatId }) {
-    if (seats) {
-      this.seatsGroup.clear();
-      this.activeSeat = null;
-      seats.forEach((seat) => {
-        if (seat.id !== activeSeatId) {
-          this.drawSeat(seat, seatRadius);
-        } else {
-          this.activeSeat = seat;
-        }
-      });
-      if (this.activeSeat) {
-        this.drawSeat(this.activeSeat, seatRadius, true);
-      }
-    }
-  }
-
-  drawSeat(seat, seatRadius, isActive) {
-    const seatSvgGroup = this.seatsGroup.group();
-    seatSvgGroup
-      .id(`${SVG_SEAT_ID_PREFIX}${seat.id}`)
-      .addClass(isActive ? 'floor-plan__seat--active' : 'floor-plan__seat');
-    if (this.props.onSeatSelect) {
-      seatSvgGroup.attr({ cursor: 'pointer' });
-    }
-    seatSvgGroup.circle(2 * seatRadius)
-      .x(seat.position.x)
-      .y(seat.position.y);
-    if (seat.occupant) {
-      // Original size of the person icon is 16px x 16px
-      // The size (width and height) or the person icon should be
-      //   2 * R * sin (Pi / 4) = R * sqrt(2)
-      // to place it inside the circle of radius R.
-      const iconOriginalSize = 16;
-      const iconSize = Math.sqrt(2) * seatRadius;
-      const iconScalingIndex = 0.9;
-      const iconScale = iconScalingIndex * iconSize / iconOriginalSize;
-      const peoplePath = `M${seat.position.x + seatRadius} ${seat.position.y + seatRadius}`
-        .concat(
-          'c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'
-        );
-      seatSvgGroup.path(peoplePath)
-        .addClass('floor-plan__person')
-        .scale(iconScale);
-    }
-    if (isActive && this.props.onSeatMove) {
-      seatSvgGroup
-        .attr({ cursor: 'move' })
-        // TODO: Limits are not applied to a seat
-        .draggable({
-          minX: 0,
-          minY: 0,
-          maxX: this.planElement.width(),
-          maxY: this.planElement.height(),
-        })
-        // .on('dragend', e => console.info(this));
-        // .on('dragstart', e => console.info(`${e.detail.p.x} ${e.detail.p.y}`))
-        .on('dragend', e => console.info(`${e.detail.p.x - seatRadius} ${e.detail.p.y - seatRadius}`));
-    }
   }
 
   render() {

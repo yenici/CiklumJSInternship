@@ -1,0 +1,28 @@
+.floor-plan__seat {
+  fill: rgb(0, 188, 212);
+  stroke-width: 0;
+}
+
+.floor-plan__seat:hover {
+  stroke-width: 1;
+  stroke: rgb(255, 64, 129);
+  stroke-dasharray: 2;
+  animation: dash 5s linear;
+}
+
+@keyframes dash {
+  to {
+    /*Make stroke-dasharray a longer value than the length of the stroke*/
+    stroke-dashoffset: 100;
+  }
+}
+
+.floor-plan__seat--active {
+  fill: rgb(255, 64, 129);
+  stroke-width: 0;
+}
+
+.floor-plan__person {
+  fill: rgb(255, 255, 255);
+  stroke-width: 0;
+}
