@@ -47,7 +47,6 @@ class FloorPlan extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.info(`Active seat: ${nextProps.activeSeatId}`);
     this.renderSvg(nextProps);
     return nextProps.officeName !== this.props.officeName ||
       nextProps.floorName !== this.props.floorName;
@@ -121,16 +120,6 @@ class FloorPlan extends React.Component {
   }
 
   drawSeat(seat, seatRadius, isActive) {
-    // Original size of the person icon is 16px x 16px
-    // The size (width and height) or the person icon should be
-    //   2 * R * sin (Pi / 4) = R * sqrt(2)
-    // to place it inside the circle of radius R.
-    const iconSize = Math.sqrt(2) * seatRadius;
-    const iconScale = iconSize / 16;
-    // The positioning starts from 0, so the shift should be decremented by 1
-    const iconShift = (2 * seatRadius - iconSize) / 2 - 1;
-    const peoplePath =
-      'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z';
     const seatSvgGroup = this.seatsGroup.group();
     seatSvgGroup
       .id(`${SVG_SEAT_ID_PREFIX}${seat.id}`)
@@ -142,10 +131,20 @@ class FloorPlan extends React.Component {
       .x(seat.position.x)
       .y(seat.position.y);
     if (seat.occupant) {
+      // Original size of the person icon is 16px x 16px
+      // The size (width and height) or the person icon should be
+      //   2 * R * sin (Pi / 4) = R * sqrt(2)
+      // to place it inside the circle of radius R.
+      const iconOriginalSize = 16;
+      const iconSize = Math.sqrt(2) * seatRadius;
+      const iconScalingIndex = 0.9;
+      const iconScale = iconScalingIndex * iconSize / iconOriginalSize;
+      const peoplePath = `M${seat.position.x + seatRadius} ${seat.position.y + seatRadius}`
+        .concat(
+          'c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'
+        );
       seatSvgGroup.path(peoplePath)
         .addClass('floor-plan__person')
-        .x(seat.position.x + iconShift)
-        .y(seat.position.y + iconShift)
         .scale(iconScale);
     }
     if (isActive && this.props.onSeatMove) {
@@ -157,7 +156,10 @@ class FloorPlan extends React.Component {
           minY: 0,
           maxX: this.planElement.width(),
           maxY: this.planElement.height(),
-        });
+        })
+        // .on('dragend', e => console.info(this));
+        // .on('dragstart', e => console.info(`${e.detail.p.x} ${e.detail.p.y}`))
+        .on('dragend', e => console.info(`${e.detail.p.x - seatRadius} ${e.detail.p.y - seatRadius}`));
     }
   }
 

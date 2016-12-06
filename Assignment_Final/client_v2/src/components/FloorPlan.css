@@ -17,7 +17,7 @@
 }
 
 .floor-plan__svg-wrapper {
-  height: 600px;
+  height: 650px;
   width: 100%;
   overflow: hidden;
 }
@@ -47,6 +47,6 @@
 }
 
 .floor-plan__person {
-  fill: white;
+  fill: rgb(255, 255, 255);
   stroke-width: 0;
 }

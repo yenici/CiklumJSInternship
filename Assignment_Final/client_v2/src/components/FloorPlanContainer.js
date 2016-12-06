@@ -14,8 +14,12 @@ class FloorPlanContainer extends React.Component {
     this.props.fetchFloorInfo(this.props.floorId);
   }
 
+  // componentDidMount() {
+  //   console.info(window.innerHeight);
+  //   console.info(document.querySelector('div.fpwrapper').offsetHeight);
+  // }
+
   render() {
-    // activeSeatId="58204762db89262a380b04fe"
     // <Paper className={this.props.floor.activeSeat ? 'fpi--active' : 'fpi'} zDepth={1}>
     //   <h2 className="floor-plan__title">Info</h2>
     // </Paper>
